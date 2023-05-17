@@ -1,59 +1,73 @@
+import 'package:app_vida_saludable/config/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
+  static const name = 'register-screen';
+
   const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final scaffoldBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
-    final textStyles = Theme.of(context).textTheme;
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-          body: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 80),
-            // Icon Banner
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      if (!context.canPop()) return;
-                      context.pop();
-                    },
-                    icon: const Icon(Icons.arrow_back_rounded,
-                        size: 40, color: Colors.white)),
-                const Spacer(flex: 1),
-                Text('Crear cuenta',
-                    style:
-                        textStyles.titleLarge?.copyWith(color: Colors.white)),
-                const Spacer(flex: 2),
-              ],
+          backgroundColor: AppColors.white,
+          appBar: AppBar(
+            backgroundColor: AppColors.white,
+            elevation: 0,
+            toolbarHeight: 100,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back, color: AppColors.primary),
+              onPressed: () => context.pop(),
             ),
-
-            const SizedBox(height: 50),
-
-            Container(
-              height: size.height - 260, // 80 los dos sizebox y 100 el ícono
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: scaffoldBackgroundColor,
-                borderRadius:
-                    const BorderRadius.only(topLeft: Radius.circular(100)),
+            title: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: SizedBox(
+                height: 100,
+                child: Image.asset(
+                  "assets/img/sis_logo_horizontal.png",
+                  fit: BoxFit.fitHeight,
+                ),
               ),
-              child: const _RegisterForm(),
-            )
-          ],
-        ),
-      )),
+            ),
+            centerTitle: true,
+          ),
+          body: SafeArea(
+            child: SizedBox(
+              width: size.width,
+              child: Center(
+                child: SingleChildScrollView(
+                  physics: const ClampingScrollPhysics(),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      // SALUDO
+                      SizedBox(height: 20),
+                      Center(
+                        child: Text(
+                          '¡Hola! Vamos a registrarte',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.greyDark),
+                        ),
+                      ),
+
+                      // FORM
+                      SizedBox(height: 20),
+                      _RegisterForm()
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )),
     );
   }
 }
@@ -63,25 +77,68 @@ class _RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyles = Theme.of(context).textTheme;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         children: [
-          const SizedBox(height: 50),
-          Text('Nueva cuenta', style: textStyles.titleMedium),
-          const SizedBox(height: 50),
+          // NOMBRES
           const CustomTextFormField(
-            label: 'Nombre completo',
+            label: 'Nombres*',
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 30),
+
+          // APELLIDOS
           const CustomTextFormField(
-            label: 'Correo',
+            label: 'Apellidos*',
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 30),
+
+          // DUI
+          CustomTextFormField(
+            label: 'Numero DUI*',
+            keyboardType: const TextInputType.numberWithOptions(
+                decimal: false, signed: false),
+            onChanged: (value) {
+              String dui = value.replaceAll("-", "");
+              return dui;
+            },
+          ),
+          const SizedBox(height: 30),
+
+          // DEPARTAMENTO
+          const CustomContainerSelected(
+            txtSelected: 'Departamento',
+          ),
+          const SizedBox(height: 30),
+
+          // MUNICIPIO
+          const CustomContainerSelected(
+            txtSelected: 'Municipio',
+          ),
+          const SizedBox(height: 30),
+
+          // TELEFONO
+          CustomTextFormField(
+            label: 'Numero de teléfono*',
+            keyboardType: const TextInputType.numberWithOptions(
+                decimal: false, signed: false),
+            onChanged: (value) {
+              String dui = value.replaceAll("-", "");
+              return dui;
+            },
+          ),
+          const SizedBox(height: 30),
+
+          // CORREO
+          const CustomTextFormField(
+            label: 'Correo*',
+            keyboardType: TextInputType.emailAddress,
+          ),
+          const SizedBox(height: 30),
+
+          // PASSWORD
           const CustomTextFormField(
             label: 'Contraseña',
             obscureText: true,
@@ -92,30 +149,18 @@ class _RegisterForm extends StatelessWidget {
             obscureText: true,
           ),
           const SizedBox(height: 30),
+
+          // BUTTON
           SizedBox(
-              width: double.infinity,
-              height: 60,
-              child: CustomTextButton(
-                text: 'Crear',
-                buttonColor: Colors.black,
-                onPressed: () {},
-              )),
-          const Spacer(flex: 2),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('¿Ya tienes cuenta?'),
-              TextButton(
-                  onPressed: () {
-                    if (context.canPop()) {
-                      return context.pop();
-                    }
-                    context.go('/login');
-                  },
-                  child: const Text('Ingresa aquí'))
-            ],
+            width: double.infinity,
+            height: 60,
+            child: CustomTextButton(
+              text: 'Registrarme',
+              buttonColor: AppColors.primary,
+              onPressed: () {},
+            ),
           ),
-          const Spacer(flex: 1),
+          const SizedBox(height: 30),
         ],
       ),
     );

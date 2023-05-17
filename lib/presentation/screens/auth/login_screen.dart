@@ -11,7 +11,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final scaffoldBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -26,9 +25,9 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 50),
+                      const SizedBox(height: 30),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: SizedBox(
                           width: 500,
                           child: Image.asset(
@@ -37,16 +36,10 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      Container(
-                        height: size.height -
-                            260, // 80 los dos sizebox y 100 el ícono
+                      const SizedBox(height: 70),
+                      SizedBox(
+                        height: size.height - 260,
                         width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: scaffoldBackgroundColor,
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(100)),
-                        ),
                         child: const _LoginForm(),
                       )
                     ],
@@ -68,33 +61,77 @@ class _LoginForm extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         children: [
-          const SizedBox(height: 90),
-          const CustomTextFormField(
-            label: 'Correo',
-            keyboardType: TextInputType.emailAddress,
+          // DUI
+          CustomTextFormField(
+            keyboardType: const TextInputType.numberWithOptions(
+                decimal: false, signed: false),
+            icon: const Icon(Icons.person, color: AppColors.grey),
+            label: 'DUI',
+            onChanged: (value) {
+              String dui = value.replaceAll("-", "");
+              return dui;
+            },
           ),
           const SizedBox(height: 30),
+
+          // PASSWORD
           const CustomTextFormField(
+            icon: Icon(Icons.lock, color: AppColors.grey),
             label: 'Contraseña',
             obscureText: true,
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
+
+          // OLVIDO CONTRASEÑA
           SizedBox(
-              width: double.infinity,
-              height: 60,
-              child: CustomTextButton(
-                text: 'Ingresar',
-                buttonColor: AppColors.primary,
-                onPressed: () {},
-              )),
+            width: double.infinity,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                TextButton(
+                  child: const Text(
+                    '¿Olvidaste tu contraseña?',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                  onPressed: () => Navigator.pushNamed(context, '/olvidaste'),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 50),
+
+          // BUTTON
+          SizedBox(
+            width: double.infinity,
+            height: 60,
+            child: CustomTextButton(
+              text: 'Ingresar',
+              buttonColor: AppColors.primary,
+              onPressed: () {},
+            ),
+          ),
+
+          // REGISTRATE
           const Spacer(flex: 2),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('¿No tienes cuenta?'),
               TextButton(
-                  onPressed: () => context.push('/register'),
-                  child: const Text('Crea una aquí'))
+                onPressed: () => context.push('/register'),
+                child: const Text(
+                  'Registrate aquí',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: AppColors.primary,
+                  ),
+                ),
+              )
             ],
           ),
           const Spacer(flex: 1),
