@@ -155,8 +155,8 @@ class _RegisterForm extends StatelessWidget {
             width: double.infinity,
             height: 60,
             child: CustomTextButton(
-              text: 'Registrarme',
-              buttonColor: AppColors.primary,
+              txtButton: 'Registrarme',
+              fontsize: 12,
               onPressed: () {},
             ),
           ),
