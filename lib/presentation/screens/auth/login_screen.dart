@@ -132,9 +132,9 @@ class _LoginForm extends ConsumerWidget {
           fontsize: 12,
           txtButton: 'Ingresar',
         ),
+        const SizedBox(height: 40),
 
         // REGISTRATE
-        const SizedBox(height: 40),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
