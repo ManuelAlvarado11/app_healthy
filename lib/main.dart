@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_vida_saludable/config/router/app_router.dart';
 import 'package:app_vida_saludable/config/theme/app_theme.dart';
+import 'package:app_vida_saludable/config/constants/environment.dart';
 
 Future<void> main() async {
   // Cargar Variables de entorno
-  await dotenv.load(fileName: '.env');
+  await Environment.initEnvironment();
 
   // Implementar Riverpod(Gestor de estado) que contiene la referencia a todos los Providers
   runApp(const ProviderScope(child: MyApp()));

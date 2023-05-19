@@ -8,8 +8,10 @@ class Dui extends FormzInput<String, DuiError> {
 
   String? get errorMessage {
     if (isValid || isPure) return null;
-    if (displayError == DuiError.empty) return 'El campo es requerido';
-    if (displayError == DuiError.length) return 'El formato es incorrecto';
+    if (displayError == DuiError.empty) return '* El campo es requerido';
+    if (displayError == DuiError.length) {
+      return '* Formato de documento no es valido';
+    }
 
     return null;
   }
