@@ -19,7 +19,7 @@ class AuthDataSourceImpl extends AuthDataSource {
   Future<LoginResponse> login(String dui, String password) async {
     try {
       final response = await dio.post('/mnt-persona/login', data: {
-        'dui': dui,
+        'documento': dui,
         'password': password,
       });
 

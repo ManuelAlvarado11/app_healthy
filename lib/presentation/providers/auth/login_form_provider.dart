@@ -1,6 +1,56 @@
+import 'package:app_vida_saludable/presentation/providers/providers.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_vida_saludable/config/utils/inputs/inputs.dart';
+
+// Provider
+final loginFormProvider =
+    StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>((ref) {
+  final loginCallback = ref.watch(authProvider.notifier).login;
+  return LoginFormNotifier(loginCallback: loginCallback);
+});
+
+// Notifier
+class LoginFormNotifier extends StateNotifier<LoginFormState> {
+  final Function(String, String) loginCallback;
+
+  LoginFormNotifier({required this.loginCallback}) : super(LoginFormState());
+
+  onDuiChange(String value) {
+    final newDui = Dui.dirty(value);
+    state = state.copyWith(
+      dui: newDui,
+      isValid: Formz.validate([newDui, state.password]),
+    );
+  }
+
+  onPasswordChange(String value) {
+    final newPassword = Password.dirty(value);
+    state = state.copyWith(
+      password: newPassword,
+      isValid: Formz.validate([state.dui, newPassword]),
+    );
+  }
+
+  onFormSubmit() {
+    __touchEveryField();
+    if (!state.isValid) return;
+
+    loginCallback(state.dui.value, state.password.value);
+  }
+
+  __touchEveryField() {
+    final dui = Dui.dirty(state.dui.value);
+    final password = Password.dirty(state.password.value);
+
+    state = state.copyWith(
+      isPosted: true,
+      dui: dui,
+      password: password,
+      isValid: Formz.validate([dui, password]),
+    );
+  }
+}
 
 // State
 class LoginFormState {
@@ -45,49 +95,3 @@ class LoginFormState {
       ''';
   }
 }
-
-// Notifier
-class LoginFormNotifier extends StateNotifier<LoginFormState> {
-  LoginFormNotifier() : super(LoginFormState());
-
-  onDuiChange(String value) {
-    final newDui = Dui.dirty(value);
-    state = state.copyWith(
-      dui: newDui,
-      isValid: Formz.validate([newDui, state.password]),
-    );
-  }
-
-  onPasswordChange(String value) {
-    final newPassword = Password.dirty(value);
-    state = state.copyWith(
-      password: newPassword,
-      isValid: Formz.validate([state.dui, newPassword]),
-    );
-  }
-
-  onFormSubmit() {
-    __touchEveryField();
-    if (!state.isValid) return;
-
-    print(state);
-  }
-
-  __touchEveryField() {
-    final dui = Dui.dirty(state.dui.value);
-    final password = Password.dirty(state.password.value);
-
-    state = state.copyWith(
-      isPosted: true,
-      dui: dui,
-      password: password,
-      isValid: Formz.validate([dui, password]),
-    );
-  }
-}
-
-// Provider
-final loginFormProvider =
-    StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>((ref) {
-  return LoginFormNotifier();
-});
