@@ -28,7 +28,11 @@ class AuthDataSourceImpl extends AuthDataSource {
       return loginResponse;
     } on DioError catch (e) {
       if (e.response?.statusCode == 401) {
-        throw CustomError('Token incorrecto');
+        throw CustomError(e.response?.data['err']['description'] ??
+            'Credenciales incorrectas');
+      }
+      if (e.type == DioErrorType.connectionTimeout) {
+        throw CustomError('Revisar conexion a internert');
       }
       throw Exception();
     } catch (e) {

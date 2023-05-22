@@ -21,7 +21,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
   Future<void> login(String dui, String password) async {
     try {
       final loginResponse = await authRepository.login(dui, password);
-      print(loginResponse.token);
       _setLoggedUser(loginResponse);
     } on CustomError catch (e) {
       logout(e.message);
