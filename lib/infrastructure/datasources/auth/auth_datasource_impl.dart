@@ -1,24 +1,16 @@
 import 'package:dio/dio.dart';
-import 'package:app_vida_saludable/config/constants/environment.dart';
 import 'package:app_vida_saludable/config/utils/errors/auth_errors.dart';
 
+import 'package:app_vida_saludable/infrastructure/datasources/datasources.dart';
 import 'package:app_vida_saludable/infrastructure/mappers/mappers.dart';
 import 'package:app_vida_saludable/domain/datasources/datasources.dart';
 import 'package:app_vida_saludable/domain/entities/entities.dart';
 
 class AuthDataSourceImpl extends AuthDataSource {
-  // Cliente HTTP DIO
-  final dio = Dio(
-    BaseOptions(
-      baseUrl: Environment.apiUrl,
-    ),
-  );
-  // -------------
-
   @override
   Future<LoginResponse> login(String dui, String password) async {
     try {
-      final response = await dio.post('/mnt-persona/login', data: {
+      final response = await ApiClient().dio.post('/mnt-persona/login', data: {
         'documento': dui,
         'password': password,
       });
