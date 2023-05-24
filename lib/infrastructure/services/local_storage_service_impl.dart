@@ -6,11 +6,11 @@ class LocalStorageServiceImpl extends LocalStorageService {
   Future<void> setLocalStorage<T>(String key, T value) async {
     final prefs = await SharedPreferences.getInstance();
 
-    switch (T) {
+    switch (value.runtimeType) {
       case int:
         prefs.setInt(key, value as int);
         break;
-      case String:
+      case (String):
         prefs.setString(key, value as String);
         break;
       case bool:

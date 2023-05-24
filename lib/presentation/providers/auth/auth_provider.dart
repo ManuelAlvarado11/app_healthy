@@ -4,19 +4,28 @@ import 'package:app_vida_saludable/domain/entities/entities.dart';
 import 'package:app_vida_saludable/domain/repositories/repositories.dart';
 import 'package:app_vida_saludable/infrastructure/datasources/datasources.dart';
 import 'package:app_vida_saludable/infrastructure/repositories/repositories.dart';
+import 'package:app_vida_saludable/infrastructure/services/services.dart';
 
 // Provider
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
   final authRepository = AuthRepositoryImpl(AuthDataSourceImpl());
+  final localStorageService = LocalStorageServiceImpl();
 
-  return AuthNotifier(authRepository: authRepository);
+  return AuthNotifier(
+    authRepository: authRepository,
+    localStorageService: localStorageService,
+  );
 });
 
 // Notifier
 class AuthNotifier extends StateNotifier<AuthState> {
   final AuthRepository authRepository;
+  final LocalStorageService localStorageService;
 
-  AuthNotifier({required this.authRepository}) : super(AuthState());
+  AuthNotifier({
+    required this.authRepository,
+    required this.localStorageService,
+  }) : super(AuthState());
 
   Future<void> login(String dui, String password) async {
     try {
@@ -33,7 +42,9 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   Future<void> checkAuthStatus() async {}
 
-  void _setLoggedUser(LoginResponse loginResponse) {
+  void _setLoggedUser(LoginResponse loginResponse) async {
+    await localStorageService.setLocalStorage('token', loginResponse.token);
+
     state = state.copyWith(
       loginResponse: loginResponse,
       authStatus: AuthStatus.authenticaded,
@@ -42,6 +53,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> logout([String? errorMessage]) async {
+    await localStorageService.removeLocalStorage('token');
+
     state = state.copyWith(
       loginResponse: null,
       authStatus: AuthStatus.notAuthenticaded,
