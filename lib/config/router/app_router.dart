@@ -2,8 +2,16 @@ import 'package:go_router/go_router.dart';
 import 'package:app_vida_saludable/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/login',
+  initialLocation: '/splash',
   routes: [
+    // SPLASH CHECK AUTH
+    GoRoute(
+      path: '/splash-check-auth',
+      name: SplashCheckAuthScreen.name,
+      builder: (context, state) {
+        return const SplashCheckAuthScreen();
+      },
+    ),
     // LOGIN
     GoRoute(
       path: '/login',
