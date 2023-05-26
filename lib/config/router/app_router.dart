@@ -37,6 +37,17 @@ final goRouterProvider = Provider((ref) {
         },
       ),
 
+      // HOME
+      GoRoute(
+        path: '/home/:page',
+        name: HomeScreen.name,
+        builder: (context, state) {
+          final pageIndex = int.parse(state.pathParameters['page'] ?? '0');
+          return HomeScreen(pageIndex: pageIndex);
+        },
+        routes: [],
+      ),
+
       // REDIRECT
       GoRoute(path: '/', redirect: (_, __) => '/login')
     ],
@@ -65,7 +76,7 @@ final goRouterProvider = Provider((ref) {
       if (authStatus == AuthStatus.authenticaded) {
         if (isGoingTo == '/login' ||
             isGoingTo == '/register' ||
-            isGoingTo == '/splash-check-auth') return '/';
+            isGoingTo == '/splash-check-auth') return '/home/0';
       }
       return null;
     },
