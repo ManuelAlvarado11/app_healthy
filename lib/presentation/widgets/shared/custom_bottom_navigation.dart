@@ -1,4 +1,6 @@
+// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
@@ -36,25 +38,52 @@ class CustomBottomNavigation extends StatelessWidget {
       elevation: 10,
       fixedColor: AppColors.primary,
       selectedFontSize: 12,
-      unselectedItemColor: Colors.black,
       selectedLabelStyle: const TextStyle(
         fontFamily: 'MuseoSans',
         fontWeight: FontWeight.w500,
         fontSize: 10.0,
-        color: AppColors.primary,
       ),
+      selectedIconTheme: const IconThemeData(color: AppColors.primary),
       onTap: (value) => onItemTapped(context, value),
       items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.label_outline),
+          icon: SvgPicture.asset(
+            'assets/svg/inicio.svg',
+            height: 40.0,
+            width: 40.0,
+            color:
+                currentIndex == 0 ? AppColors.primary : AppColors.greyLight100,
+          ),
+          label: 'Page 1',
+        ),
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            'assets/svg/expediente.svg',
+            height: 40.0,
+            width: 40.0,
+            color:
+                currentIndex == 1 ? AppColors.primary : AppColors.greyLight100,
+          ),
           label: 'Page 2',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.favorite_border_outlined),
+          icon: SvgPicture.asset(
+            'assets/svg/vida_saludable.svg',
+            height: 40.0,
+            width: 40.0,
+            color:
+                currentIndex == 2 ? AppColors.primary : AppColors.greyLight100,
+          ),
           label: 'Page 3',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.favorite_border_outlined),
+          icon: SvgPicture.asset(
+            'assets/svg/configuracion.svg',
+            height: 40.0,
+            width: 40.0,
+            color:
+                currentIndex == 3 ? AppColors.primary : AppColors.greyLight100,
+          ),
           label: 'Page 4',
         )
       ],
