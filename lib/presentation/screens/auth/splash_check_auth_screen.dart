@@ -12,6 +12,7 @@ class SplashCheckAuthScreen extends StatefulWidget {
 
 class _SplashCheckAuthScreenState extends State<SplashCheckAuthScreen>
     with TickerProviderStateMixin {
+  // ANIMATION SPLASH
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 1),
     vsync: this,
@@ -21,6 +22,17 @@ class _SplashCheckAuthScreenState extends State<SplashCheckAuthScreen>
     parent: _controller,
     curve: Curves.easeIn,
   );
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

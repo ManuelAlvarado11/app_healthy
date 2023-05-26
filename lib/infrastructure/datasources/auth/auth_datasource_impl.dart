@@ -39,8 +39,22 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<LoginResponse> checkAuthStatus(String token) {
-    // TODO: implement checkAuthStatus
-    throw UnimplementedError();
+  Future<LoginResponse> checkAuthStatus(String token) async {
+    try {
+      final response = await ApiService()
+          .dio
+          .post('/refresh', data: {'refresh_token': token});
+      final loginResponse =
+          LoginResponseMapper.loginResponseJsonToEntity(response.data);
+      return loginResponse;
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 401) {
+        throw CustomError(
+            e.response?.data['err']['description'] ?? 'Token incorrecto');
+      }
+      throw Exception();
+    } catch (e) {
+      throw Exception();
+    }
   }
 }

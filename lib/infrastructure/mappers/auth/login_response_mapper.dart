@@ -4,6 +4,7 @@ class LoginResponseMapper {
   static LoginResponse loginResponseJsonToEntity(Map<String, dynamic> json) =>
       LoginResponse(
         token: json['token'] ?? '',
-        refreshToken: json['refreshToken'],
+        // TODO: Correguir camelCase API
+        refreshToken: json['refreshToken'] ?? json['refresh_token'] ?? '',
       );
 }

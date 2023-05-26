@@ -25,7 +25,9 @@ class AuthNotifier extends StateNotifier<AuthState> {
   AuthNotifier({
     required this.authRepository,
     required this.localStorageService,
-  }) : super(AuthState());
+  }) : super(AuthState()) {
+    checkAuthStatus();
+  }
 
   Future<void> login(String dui, String password) async {
     try {
@@ -40,10 +42,24 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   Future<void> registerUser(String dui, String password) async {}
 
-  Future<void> checkAuthStatus() async {}
+  Future<void> checkAuthStatus() async {
+    final refreshToken =
+        await localStorageService.getLocalStorage<String>('refresh_token');
+
+    if (refreshToken == null) return logout();
+
+    try {
+      final loginResponse = await authRepository.checkAuthStatus(refreshToken);
+      _setLoggedUser(loginResponse);
+    } catch (e) {
+      logout();
+    }
+  }
 
   void _setLoggedUser(LoginResponse loginResponse) async {
     await localStorageService.setLocalStorage('token', loginResponse.token);
+    await localStorageService.setLocalStorage(
+        'refresh_token', loginResponse.refreshToken);
 
     state = state.copyWith(
       loginResponse: loginResponse,
