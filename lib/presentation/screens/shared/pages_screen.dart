@@ -1,18 +1,19 @@
+import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 
-class HomeScreen extends StatelessWidget {
-  static const name = 'home-screen';
+class PagesScreen extends StatelessWidget {
+  static const name = 'pages-screen';
 
   final int pageIndex;
 
-  HomeScreen({super.key, required this.pageIndex});
+  PagesScreen({super.key, required this.pageIndex});
 
-  final viewRoutes = <Widget>[
-    Scaffold(appBar: AppBar(title: const Text('Page 1'))),
+  final pagesRoutes = <Widget>[
+    const HomeScreen(),
     Scaffold(appBar: AppBar(title: const Text('Pege 2'))),
     Scaffold(appBar: AppBar(title: const Text('Page 3'))),
-    Scaffold(appBar: AppBar(title: const Text('Page 4'))),
+    const ConfigurationScreen(),
   ];
 
   @override
@@ -20,7 +21,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: IndexedStack(
         index: pageIndex,
-        children: viewRoutes,
+        children: pagesRoutes,
       ),
       bottomNavigationBar: CustomBottomNavigation(currentIndex: pageIndex),
     );

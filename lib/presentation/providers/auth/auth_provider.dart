@@ -56,6 +56,17 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  Future<void> logout([String? errorMessage]) async {
+    await localStorageService.removeLocalStorage('token');
+    await localStorageService.removeLocalStorage('refresh_token');
+
+    state = state.copyWith(
+      loginResponse: null,
+      authStatus: AuthStatus.notAuthenticaded,
+      errorMessage: errorMessage,
+    );
+  }
+
   void _setLoggedUser(LoginResponse loginResponse) async {
     await localStorageService.setLocalStorage('token', loginResponse.token);
     await localStorageService.setLocalStorage(
@@ -65,16 +76,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
       loginResponse: loginResponse,
       authStatus: AuthStatus.authenticaded,
       errorMessage: '',
-    );
-  }
-
-  Future<void> logout([String? errorMessage]) async {
-    await localStorageService.removeLocalStorage('token');
-
-    state = state.copyWith(
-      loginResponse: null,
-      authStatus: AuthStatus.notAuthenticaded,
-      errorMessage: errorMessage,
     );
   }
 }

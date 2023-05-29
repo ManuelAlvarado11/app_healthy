@@ -9,12 +9,13 @@ class AppTheme {
           secondary: AppColors.primary,
           primary: AppColors.grey,
         ),
+        scaffoldBackgroundColor: AppColors.greyLight,
         textTheme: const TextTheme(
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
             fontFamily: 'MuseoSans',
             fontWeight: FontWeight.w500,
           ),
-          bodyText2: TextStyle(
+          bodyMedium: TextStyle(
             fontFamily: 'MuseoSans',
             fontWeight: FontWeight.w500,
           ),

@@ -13,16 +13,16 @@ class CustomBottomNavigation extends StatelessWidget {
   void onItemTapped(BuildContext context, int index) {
     switch (index) {
       case 0:
-        context.go('/home/0');
+        context.go('/page/0');
         break;
       case 1:
-        context.go('/home/1');
+        context.go('/page/1');
         break;
       case 2:
-        context.go('/home/2');
+        context.go('/page/2');
         break;
       case 3:
-        context.go('/home/3');
+        context.go('/page/3');
         break;
     }
   }

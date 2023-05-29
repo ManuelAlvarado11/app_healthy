@@ -1,8 +1,8 @@
-import 'package:app_vida_saludable/config/router/app_router_notifir.dart';
-import 'package:app_vida_saludable/presentation/providers/providers.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:app_vida_saludable/config/router/app_router_notifir.dart';
 import 'package:app_vida_saludable/presentation/screens/screens.dart';
+import 'package:app_vida_saludable/presentation/providers/providers.dart';
 
 final goRouterProvider = Provider((ref) {
   // PROVIDER STATE AUTH
@@ -16,34 +16,30 @@ final goRouterProvider = Provider((ref) {
       GoRoute(
         path: '/splash-check-auth',
         name: SplashCheckAuthScreen.name,
-        builder: (context, state) {
-          return const SplashCheckAuthScreen();
-        },
+        builder: (context, state) => const SplashCheckAuthScreen(),
       ),
+
       // LOGIN
       GoRoute(
         path: '/login',
         name: LoginScreen.name,
-        builder: (context, state) {
-          return const LoginScreen();
-        },
+        builder: (context, state) => const LoginScreen(),
       ),
+
       // REGISTER
       GoRoute(
         path: '/register',
         name: RegisterScreen.name,
-        builder: (context, state) {
-          return const RegisterScreen();
-        },
+        builder: (context, state) => const RegisterScreen(),
       ),
 
-      // HOME
+      // PAGES BOTTOM NAVIGATION
       GoRoute(
-        path: '/home/:page',
-        name: HomeScreen.name,
+        path: '/page/:page',
+        name: PagesScreen.name,
         builder: (context, state) {
           final pageIndex = int.parse(state.pathParameters['page'] ?? '0');
-          return HomeScreen(pageIndex: pageIndex);
+          return PagesScreen(pageIndex: pageIndex);
         },
         routes: [],
       ),
@@ -51,6 +47,8 @@ final goRouterProvider = Provider((ref) {
       // REDIRECT
       GoRoute(path: '/', redirect: (_, __) => '/login')
     ],
+
+    // PROTECCION DE RUTAS EN EL REDIRECT
     redirect: (context, state) {
       final isGoingTo = state.matchedLocation;
       final authStatus = goRouterNotifier.authStatus;
@@ -76,7 +74,7 @@ final goRouterProvider = Provider((ref) {
       if (authStatus == AuthStatus.authenticaded) {
         if (isGoingTo == '/login' ||
             isGoingTo == '/register' ||
-            isGoingTo == '/splash-check-auth') return '/home/0';
+            isGoingTo == '/splash-check-auth') return '/page/0';
       }
       return null;
     },
