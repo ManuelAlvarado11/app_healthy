@@ -57,8 +57,8 @@ class CustomBottomNavigation extends StatelessWidget {
           label: 'Page 1',
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            'assets/svg/expediente.svg',
+          icon: Image.asset(
+            'assets/img/Expediente.png',
             height: 40.0,
             width: 40.0,
             color:
