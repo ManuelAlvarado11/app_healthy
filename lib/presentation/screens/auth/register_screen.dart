@@ -39,14 +39,14 @@ class RegisterScreen extends StatelessWidget {
           body: SafeArea(
             child: SizedBox(
               width: size.width,
-              child: Center(
+              child: const Center(
                 child: SingleChildScrollView(
-                  physics: const ClampingScrollPhysics(),
+                  physics: ClampingScrollPhysics(),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       // SALUDO
                       SizedBox(height: 20),
                       Center(
@@ -155,8 +155,7 @@ class _RegisterForm extends StatelessWidget {
             width: double.infinity,
             height: 60,
             child: CustomTextButton(
-              txtButton: 'Registrarme',
-              fontsize: 12,
+              text: 'Registrarme',
               onPressed: () {},
             ),
           ),

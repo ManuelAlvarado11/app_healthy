@@ -9,7 +9,7 @@ class AppTheme {
           secondary: AppColors.primary,
           primary: AppColors.grey,
         ),
-        scaffoldBackgroundColor: AppColors.greyLight,
+        scaffoldBackgroundColor: AppColors.white,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(
             fontFamily: 'MuseoSans',
