@@ -10,44 +10,33 @@ class ConfigurationScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
-      child: Scaffold(
-        backgroundColor: AppColors.white,
-        body: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 70.0),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 70),
-                      child: Center(
-                          child: Image.asset("assets/img/logo_blue.png")),
-                    ),
-                    const SizedBox(height: 20.0),
-                    const Center(
-                      child: Text(
-                        'Configuración',
-                        style: TextStyle(
-                          fontFamily: 'MuseoSans',
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20.0,
-                          color: AppColors.greyDark,
-                        ),
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                children: [
+                  const SizedBox(height: 70.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 70),
+                    child:
+                        Center(child: Image.asset("assets/img/logo_blue.png")),
+                  ),
+                  const SizedBox(height: 20.0),
+                  const Center(
+                    child: Text(
+                      'Configuración',
+                      style: TextStyle(
+                        fontFamily: 'MuseoSans',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20.0,
+                        color: AppColors.greyDark,
                       ),
                     ),
-                    const SizedBox(height: 30.0),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 40),
-              Column(
-                children: [
+                  ),
+                  const SizedBox(height: 70.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,8 +59,8 @@ class ConfigurationScreen extends ConsumerWidget {
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -80,7 +69,7 @@ class ConfigurationScreen extends ConsumerWidget {
   Future showDialogCerrarSesion(BuildContext context, WidgetRef ref) {
     return showDialog(
       context: context,
-      builder: (BuildContext ctx) {
+      builder: (_) {
         return AlertDialog(
           backgroundColor: AppColors.greyLight90,
           shape:
