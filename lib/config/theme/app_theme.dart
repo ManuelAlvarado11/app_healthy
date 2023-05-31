@@ -10,6 +10,10 @@ class AppTheme {
           primary: AppColors.grey,
         ),
         scaffoldBackgroundColor: AppColors.white,
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          surfaceTintColor: AppColors.white,
+        ),
         textTheme: const TextTheme(
           bodyLarge: TextStyle(
             fontFamily: 'MuseoSans',

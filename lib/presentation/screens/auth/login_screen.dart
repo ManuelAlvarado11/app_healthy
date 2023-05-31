@@ -136,7 +136,7 @@ class _LoginForm extends ConsumerWidget {
                     color: AppColors.primary,
                   ),
                 ),
-                onPressed: () => Navigator.pushNamed(context, '/olvidaste'),
+                onPressed: () => context.push('/forgot-pass'),
               ),
             ],
           ),

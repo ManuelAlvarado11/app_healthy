@@ -33,6 +33,13 @@ final goRouterProvider = Provider((ref) {
         builder: (context, state) => const RegisterScreen(),
       ),
 
+      // FORGOT PASS
+      GoRoute(
+        path: '/forgot-pass',
+        name: ForgotPassScreen.name,
+        builder: (context, state) => const ForgotPassScreen(),
+      ),
+
       // PAGES BOTTOM NAVIGATION
       GoRoute(
         path: '/page/:page',
@@ -65,7 +72,9 @@ final goRouterProvider = Provider((ref) {
 
       // NO AUTHENTICATED
       if (authStatus == AuthStatus.notAuthenticaded) {
-        if (isGoingTo == '/login' || isGoingTo == '/register') return null;
+        if (isGoingTo == '/login' ||
+            isGoingTo == '/register' ||
+            isGoingTo == '/forgot-pass') return null;
 
         return '/login';
       }
