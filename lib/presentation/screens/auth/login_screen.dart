@@ -145,11 +145,11 @@ class _LoginForm extends ConsumerWidget {
 
         // BUTTON
         CustomTextButton(
-          onPressed: () {
-            ref.read(loginFormProvider.notifier).onFormSubmit();
-          },
-          fontsize: 12,
-          txtButton: 'Ingresar',
+          text: 'Ingresar',
+          buttonColor: AppColors.primary,
+          onPressed: loginForm.isPosting
+              ? null
+              : ref.read(loginFormProvider.notifier).onFormSubmit,
         ),
         const SizedBox(height: 40),
 
