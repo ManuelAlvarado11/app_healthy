@@ -20,6 +20,7 @@ dependencies:
   intl: ^0.18.1
   mask_text_input_formatter: ^2.4.0
   shared_preferences: ^2.1.1
+  syncfusion_flutter_charts: ^21.2.8
 
 dev_dependencies:
   flutter_lints: ^2.0.0

@@ -1,8 +1,7 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
