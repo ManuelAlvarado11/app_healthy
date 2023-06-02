@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:app_vida_saludable/config/theme/app_colors.dart';
+
+import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 import 'package:app_vida_saludable/presentation/providers/providers.dart';
+
+import 'package:app_vida_saludable/config/theme/app_colors.dart';
 import 'package:app_vida_saludable/config/helpers/mask_formats.dart'
     as mask_formats;
 
 class LoginScreen extends StatelessWidget {
-  static const name = 'login-screen';
+  static const routeName = '/login-screen';
 
   const LoginScreen({super.key});
 
@@ -136,7 +139,7 @@ class _LoginForm extends ConsumerWidget {
                     color: AppColors.primary,
                   ),
                 ),
-                onPressed: () => context.push('/forgot-pass'),
+                onPressed: () => context.push(ForgotPassScreen.routeName),
               ),
             ],
           ),
@@ -159,7 +162,7 @@ class _LoginForm extends ConsumerWidget {
           children: [
             const Text('¿No tienes cuenta?'),
             TextButton(
-              onPressed: () => context.push('/register'),
+              onPressed: () => context.push(RegisterScreen.routeName),
               child: const Text(
                 'Registrate aquí',
                 style: TextStyle(

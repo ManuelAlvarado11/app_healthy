@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
 
 class SplashCheckAuthScreen extends StatefulWidget {
-  static const name = 'splash-screen';
+  static const routeName = '/splash-check-auth';
 
   const SplashCheckAuthScreen({super.key});
 

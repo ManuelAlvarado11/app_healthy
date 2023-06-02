@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
-  static const name = 'register-screen';
+  static const routeName = '/register-screen';
 
   const RegisterScreen({super.key});
 

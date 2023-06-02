@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
+import 'package:app_vida_saludable/presentation/screens/screens.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
   final int currentIndex;
@@ -12,16 +13,16 @@ class CustomBottomNavigation extends StatelessWidget {
   void onItemTapped(BuildContext context, int index) {
     switch (index) {
       case 0:
-        context.go('/page/0');
+        context.go('${PagesScreen.routeName}/0');
         break;
       case 1:
-        context.go('/page/1');
+        context.go('${PagesScreen.routeName}/1');
         break;
       case 2:
-        context.go('/page/2');
+        context.go('${PagesScreen.routeName}/2');
         break;
       case 3:
-        context.go('/page/3');
+        context.go('${PagesScreen.routeName}/3');
         break;
     }
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 
 class PagesScreen extends StatelessWidget {
-  static const name = 'pages-screen';
+  static const routeName = '/pages-screen';
 
   final int pageIndex;
 
