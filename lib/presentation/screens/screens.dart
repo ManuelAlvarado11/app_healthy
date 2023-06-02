@@ -7,6 +7,9 @@ export './auth/forgot_pass_screen.dart';
 // HOME
 export './home/home_screen.dart';
 
+// EXPEDIENTE
+export './expediente/expediente_screen.dart';
+
 // CONFIGURATION
 export './configuration/configuration_screen.dart';
 
