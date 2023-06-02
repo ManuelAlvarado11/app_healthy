@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 class ForgotPassScreen extends StatelessWidget {
-  static const name = 'forgot-pass-screen';
+  static const routeName = '/forgot-pass-screen';
 
   const ForgotPassScreen({super.key});
 
