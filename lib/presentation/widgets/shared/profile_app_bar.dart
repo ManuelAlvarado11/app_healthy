@@ -85,9 +85,9 @@ class ProfileAppBar extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         if (isHome) {
-                          context.go('/page/3');
+                          context.push('/pages-screen/3');
                         } else {
-                          context.go('/page/0');
+                          context.push('/pages-screen/0');
                         }
                       },
                       child: ProfilePicture(
