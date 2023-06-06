@@ -1,8 +1,8 @@
-import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:app_vida_saludable/config/theme/app_colors.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter/services.dart';
+import 'package:app_vida_saludable/config/theme/app_colors.dart';
+import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 
 class ForgotPassScreen extends StatelessWidget {
   static const routeName = '/forgot-pass-screen';
@@ -19,7 +19,7 @@ class ForgotPassScreen extends StatelessWidget {
         toolbarHeight: 100,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppColors.primary),
-          onPressed: () => context.pop(),
+          onPressed: () => context.canPop() ? context.pop() : null,
         ),
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),

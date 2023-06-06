@@ -1,9 +1,11 @@
-import 'package:app_vida_saludable/presentation/providers/providers.dart';
-import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:app_vida_saludable/config/theme/app_colors.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:app_vida_saludable/presentation/providers/providers.dart';
+import 'package:app_vida_saludable/presentation/screens/screens.dart';
+import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
+import 'package:app_vida_saludable/config/theme/app_colors.dart';
 
 class ConfigurationScreen extends ConsumerWidget {
   const ConfigurationScreen({super.key});
@@ -14,7 +16,9 @@ class ConfigurationScreen extends ConsumerWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppColors.primary),
-          onPressed: () => context.pop(),
+          onPressed: () => context.canPop()
+              ? context.pop()
+              : context.go('${PagesScreen.routeName}/0'),
         ),
       ),
       body: SafeArea(
@@ -107,7 +111,7 @@ class ConfigurationScreen extends ConsumerWidget {
                               TextStyle(fontSize: 14, color: AppColors.primary),
                         ),
                         onPressed: () {
-                          context.pop();
+                          context.canPop() ? context.pop() : null;
                         },
                       ),
                       const SizedBox(width: 20),

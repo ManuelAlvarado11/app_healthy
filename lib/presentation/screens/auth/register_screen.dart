@@ -1,6 +1,6 @@
-import 'package:app_vida_saludable/config/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:app_vida_saludable/config/theme/app_colors.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -21,7 +21,7 @@ class RegisterScreen extends StatelessWidget {
             toolbarHeight: 100,
             leading: IconButton(
               icon: const Icon(Icons.arrow_back, color: AppColors.primary),
-              onPressed: () => context.pop(),
+              onPressed: () => context.canPop() ? context.pop() : null,
             ),
             title: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),

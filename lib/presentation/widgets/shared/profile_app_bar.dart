@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
+import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 
 class ProfileAppBar extends StatelessWidget {
@@ -43,7 +44,9 @@ class ProfileAppBar extends StatelessWidget {
                   icon: const Icon(Icons.arrow_back),
                   color: AppColors.blueDark,
                   onPressed: () {
-                    context.pop();
+                    context.canPop()
+                        ? context.pop()
+                        : context.go('${PagesScreen.routeName}/0');
                   },
                 ),
               ),
@@ -85,9 +88,9 @@ class ProfileAppBar extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         if (isHome) {
-                          context.push('/pages-screen/3');
+                          context.go('/pages-screen/3');
                         } else {
-                          context.push('/pages-screen/0');
+                          context.go('/pages-screen/0');
                         }
                       },
                       child: ProfilePicture(

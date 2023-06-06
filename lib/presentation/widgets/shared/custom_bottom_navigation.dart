@@ -13,16 +13,16 @@ class CustomBottomNavigation extends StatelessWidget {
   void onItemTapped(BuildContext context, int index) {
     switch (index) {
       case 0:
-        context.push('${PagesScreen.routeName}/0');
+        context.go('${PagesScreen.routeName}/0');
         break;
       case 1:
-        context.push('${PagesScreen.routeName}/1');
+        context.go('${PagesScreen.routeName}/1');
         break;
       case 2:
-        context.push('${PagesScreen.routeName}/2');
+        context.go(SplashVidaSaludableScreen.routeName);
         break;
       case 3:
-        context.push('${PagesScreen.routeName}/3');
+        context.go('${PagesScreen.routeName}/3');
         break;
     }
   }

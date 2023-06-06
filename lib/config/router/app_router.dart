@@ -48,7 +48,12 @@ final goRouterProvider = Provider((ref) {
           final pageIndex = int.parse(state.pathParameters['page'] ?? '0');
           return PagesScreen(pageIndex: pageIndex);
         },
-        routes: [],
+      ),
+      // SPLASH VIDA SALUDABLE
+      GoRoute(
+        path: SplashVidaSaludableScreen.routeName,
+        name: SplashVidaSaludableScreen.routeName,
+        builder: (context, state) => const SplashVidaSaludableScreen(),
       ),
 
       // REDIRECT

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -35,12 +36,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         centerTitle: true,
-        leading: const IconButton(
-          icon: Icon(
+        leading: IconButton(
+          icon: const Icon(
             Icons.arrow_back,
             color: AppColors.black,
           ),
-          onPressed: null,
+          onPressed: onPressed ?? () => context.canPop() ? context.pop() : null,
         ),
       ),
     );

@@ -12,7 +12,7 @@ class PagesScreen extends StatelessWidget {
   final pagesRoutes = <Widget>[
     const HomeScreen(),
     const ExpedienteScreen(isSincronizacion: false),
-    Scaffold(appBar: AppBar(title: const Text('Page 3'))),
+    const HomeScreen(),
     const ConfigurationScreen(),
   ];
 

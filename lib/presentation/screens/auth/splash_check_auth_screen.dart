@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
 
 class SplashCheckAuthScreen extends StatefulWidget {
-  static const routeName = '/splash-check-auth';
+  static const routeName = '/splash-check-auth-screen';
 
   const SplashCheckAuthScreen({super.key});
 
@@ -22,6 +22,7 @@ class _SplashCheckAuthScreenState extends State<SplashCheckAuthScreen>
     parent: _controller,
     curve: Curves.easeIn,
   );
+  // END ANIMATION
 
   @override
   void initState() {

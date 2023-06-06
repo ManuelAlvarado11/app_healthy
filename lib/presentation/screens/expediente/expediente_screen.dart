@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
+import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 
 class ExpedienteScreen extends StatelessWidget {
@@ -17,9 +19,8 @@ class ExpedienteScreen extends StatelessWidget {
         appBar: isSincronizacion
             ? null
             : CustomAppBar(
-                onPressed: () {},
+                onPressed: () => context.go('${PagesScreen.routeName}/0'),
               ),
-        backgroundColor: AppColors.white,
         body: SingleChildScrollView(
           child: Column(
             children: [
