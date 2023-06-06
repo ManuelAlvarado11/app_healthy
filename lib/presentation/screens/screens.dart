@@ -12,6 +12,7 @@ export './expediente/expediente_screen.dart';
 
 // VIDA SALUDABLE
 export './vidaSaludable/splash_vida_saludable_screen.dart';
+export './vidaSaludable/home_vida_saludable_screen.dart';
 
 // CONFIGURATION
 export './configuration/configuration_screen.dart';

@@ -49,12 +49,21 @@ final goRouterProvider = Provider((ref) {
           return PagesScreen(pageIndex: pageIndex);
         },
       ),
+
       // SPLASH VIDA SALUDABLE
       GoRoute(
         path: SplashVidaSaludableScreen.routeName,
         name: SplashVidaSaludableScreen.routeName,
         builder: (context, state) => const SplashVidaSaludableScreen(),
       ),
+
+      // HOME VIDA SALUDABLE
+      // GoRoute(
+      //   path: SplashVidaSaludableScreen.routeName,
+      //   name: SplashVidaSaludableScreen.routeName,
+      //   builder: (context, state) => const SplashVidaSaludableScreen(),
+      //   routes: [],
+      // ),
 
       // REDIRECT
       GoRoute(path: '/', redirect: (_, __) => LoginScreen.routeName)
