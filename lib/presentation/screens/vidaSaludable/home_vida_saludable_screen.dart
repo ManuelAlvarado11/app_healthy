@@ -19,7 +19,8 @@ class HomeVidaSaludableScreen extends StatelessWidget {
               child: SvgPicture.asset(
                 "assets/svg/linea_azul.svg",
                 width: size.width,
-                color: AppColors.sky,
+                colorFilter:
+                    const ColorFilter.mode(AppColors.sky, BlendMode.srcIn),
               ),
             ),
             Column(

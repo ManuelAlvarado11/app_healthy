@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_vida_saludable/config/router/app_router_notifir.dart';
+import 'package:app_vida_saludable/config/router/routes/routes.dart';
 import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:app_vida_saludable/presentation/providers/providers.dart';
 
@@ -12,33 +13,11 @@ final goRouterProvider = Provider((ref) {
     initialLocation: SplashCheckAuthScreen.routeName,
     refreshListenable: goRouterNotifier,
     routes: [
-      // SPLASH CHECK AUTH
-      GoRoute(
-        path: SplashCheckAuthScreen.routeName,
-        name: SplashCheckAuthScreen.routeName,
-        builder: (context, state) => const SplashCheckAuthScreen(),
-      ),
+      // AUTH ROUTES
+      ...authRouter,
 
-      // LOGIN
-      GoRoute(
-        path: LoginScreen.routeName,
-        name: LoginScreen.routeName,
-        builder: (context, state) => const LoginScreen(),
-      ),
-
-      // REGISTER
-      GoRoute(
-        path: RegisterScreen.routeName,
-        name: RegisterScreen.routeName,
-        builder: (context, state) => const RegisterScreen(),
-      ),
-
-      // FORGOT PASS
-      GoRoute(
-        path: ForgotPassScreen.routeName,
-        name: ForgotPassScreen.routeName,
-        builder: (context, state) => const ForgotPassScreen(),
-      ),
+      //SPLASH ROUTES
+      ...splashRouter,
 
       // PAGES BOTTOM NAVIGATION
       GoRoute(
@@ -48,22 +27,8 @@ final goRouterProvider = Provider((ref) {
           final pageIndex = int.parse(state.pathParameters['page'] ?? '0');
           return PagesScreen(pageIndex: pageIndex);
         },
+        routes: [],
       ),
-
-      // SPLASH VIDA SALUDABLE
-      GoRoute(
-        path: SplashVidaSaludableScreen.routeName,
-        name: SplashVidaSaludableScreen.routeName,
-        builder: (context, state) => const SplashVidaSaludableScreen(),
-      ),
-
-      // HOME VIDA SALUDABLE
-      // GoRoute(
-      //   path: SplashVidaSaludableScreen.routeName,
-      //   name: SplashVidaSaludableScreen.routeName,
-      //   builder: (context, state) => const SplashVidaSaludableScreen(),
-      //   routes: [],
-      // ),
 
       // REDIRECT
       GoRoute(path: '/', redirect: (_, __) => LoginScreen.routeName)

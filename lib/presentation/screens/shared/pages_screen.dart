@@ -9,7 +9,7 @@ class PagesScreen extends StatelessWidget {
 
   PagesScreen({super.key, required this.pageIndex});
 
-  final pagesRoutes = <Widget>[
+  final pagesRoutes = [
     const HomeScreen(),
     const ExpedienteScreen(isSincronizacion: false),
     const HomeVidaSaludableScreen(),
