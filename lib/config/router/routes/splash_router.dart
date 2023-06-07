@@ -15,4 +15,11 @@ final splashRouter = [
     name: SplashVidaSaludableScreen.routeName,
     builder: (context, state) => const SplashVidaSaludableScreen(),
   ),
+
+  // SPLASH ALIMENTACION
+  GoRoute(
+    path: SplashAlimentacionScreen.routeName,
+    name: SplashAlimentacionScreen.routeName,
+    builder: (context, state) => const SplashAlimentacionScreen(),
+  ),
 ];

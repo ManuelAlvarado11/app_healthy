@@ -27,7 +27,9 @@ final goRouterProvider = Provider((ref) {
           final pageIndex = int.parse(state.pathParameters['page'] ?? '0');
           return PagesScreen(pageIndex: pageIndex);
         },
-        routes: [],
+        routes: [
+          ...alimentacionRouter,
+        ],
       ),
 
       // REDIRECT

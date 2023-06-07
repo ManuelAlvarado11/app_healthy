@@ -10,12 +10,16 @@ export './home/home_screen.dart';
 // EXPEDIENTE
 export './expediente/expediente_screen.dart';
 
-// VIDA SALUDABLE
-export './vidaSaludable/splash_vida_saludable_screen.dart';
-export './vidaSaludable/home_vida_saludable_screen.dart';
-
 // CONFIGURATION
 export './configuration/configuration_screen.dart';
 
 // SHARED
 export './shared/pages_screen.dart';
+
+// VIDA SALUDABLE
+export './vidaSaludable/splash_vida_saludable_screen.dart';
+export './vidaSaludable/home_vida_saludable_screen.dart';
+
+// ALIMENTACION
+export './vidaSaludable/alimentacion/splash_alimentacion_screen.dart';
+export './vidaSaludable/alimentacion/home_alimentacion_screen.dart';

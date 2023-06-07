@@ -1,7 +1,9 @@
+import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeVidaSaludableScreen extends StatelessWidget {
   const HomeVidaSaludableScreen({super.key});
@@ -68,7 +70,8 @@ class HomeVidaSaludableScreen extends StatelessWidget {
                         img: "assets/img/alimentacion_home.png",
                         icon: "assets/svg/alimentacion_home.svg",
                         colorBanner: AppColors.greenDark,
-                        onTap: () => {},
+                        onTap: () =>
+                            context.go(SplashAlimentacionScreen.routeName),
                       ),
                       _MenuVidaSaludable(
                         title: 'Salud bucal',

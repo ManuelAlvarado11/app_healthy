@@ -25,11 +25,13 @@ class _SplashVidaSaludableScreenState extends State<SplashVidaSaludableScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Image.asset(
-      "assets/img/splash_vida_saludable.png",
-      width: size.width,
-      height: size.height,
-      fit: BoxFit.cover,
+    return Scaffold(
+      body: Image.asset(
+        "assets/img/splash_vida_saludable.png",
+        width: size.width,
+        height: size.height,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }
