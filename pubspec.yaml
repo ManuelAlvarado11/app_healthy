@@ -19,6 +19,7 @@ dependencies:
   go_router: ^7.0.1
   intl: ^0.18.1
   mask_text_input_formatter: ^2.4.0
+  material_design_icons_flutter: ^6.0.7096
   shared_preferences: ^2.1.1
   syncfusion_flutter_charts: ^21.2.8
 
