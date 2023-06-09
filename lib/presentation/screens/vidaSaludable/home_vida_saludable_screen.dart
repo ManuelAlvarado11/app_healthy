@@ -1,9 +1,10 @@
-import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeVidaSaludableScreen extends StatelessWidget {
   const HomeVidaSaludableScreen({super.key});
@@ -65,7 +66,7 @@ class HomeVidaSaludableScreen extends StatelessWidget {
                   child: ListView(
                     shrinkWrap: true,
                     children: [
-                      _MenuVidaSaludable(
+                      MenuVidaSaludable(
                         title: 'Alimentacion',
                         img: "assets/img/alimentacion_home.png",
                         icon: "assets/svg/alimentacion_home.svg",
@@ -73,14 +74,14 @@ class HomeVidaSaludableScreen extends StatelessWidget {
                         onTap: () =>
                             context.go(SplashAlimentacionScreen.routeName),
                       ),
-                      _MenuVidaSaludable(
+                      MenuVidaSaludable(
                         title: 'Salud bucal',
                         img: "assets/img/salud_bucal_home.png",
                         icon: "assets/svg/salud_bucal_home.svg",
                         colorBanner: AppColors.skyBlue,
                         onTap: () => {},
                       ),
-                      _MenuVidaSaludable(
+                      MenuVidaSaludable(
                         title: 'Ejercicio',
                         // title: S.of(context).proximamente,
                         img: "assets/img/ejercicio_home.png",
@@ -88,14 +89,14 @@ class HomeVidaSaludableScreen extends StatelessWidget {
                         colorBanner: EjercicioColors.secondary,
                         onTap: () => {},
                       ),
-                      _MenuVidaSaludable(
+                      MenuVidaSaludable(
                         title: 'Proximamente',
                         img: "assets/img/salud_mental_home.png",
                         icon: "assets/svg/salud_mental_home.svg",
                         colorBanner: AppColors.skyBlueLight,
                         onTap: () {},
                       ),
-                      _MenuVidaSaludable(
+                      MenuVidaSaludable(
                         title: 'Proximamente',
                         img: "assets/img/control_ciclo_home.png",
                         icon: "assets/svg/control_ciclo_home.svg",
@@ -110,75 +111,6 @@ class HomeVidaSaludableScreen extends StatelessWidget {
           ],
         ),
       )),
-    );
-  }
-}
-
-class _MenuVidaSaludable extends StatelessWidget {
-  final String title;
-  final String icon;
-  final String img;
-  final Color colorBanner;
-  final GestureTapCallback? onTap;
-
-  const _MenuVidaSaludable({
-    required this.title,
-    required this.icon,
-    required this.img,
-    required this.colorBanner,
-    this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20.0, left: 30.0, right: 30.0),
-      child: GestureDetector(
-        onTap: onTap,
-        child: SizedBox(
-          height: 125,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: Stack(
-              children: [
-                Image.asset(
-                  img,
-                  fit: BoxFit.cover,
-                  width: size.width,
-                ),
-                Container(
-                  width: size.width,
-                  color: colorBanner.withOpacity(0.70),
-                ),
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        icon,
-                        height: 40,
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          fontFamily: 'MuseoSans',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
