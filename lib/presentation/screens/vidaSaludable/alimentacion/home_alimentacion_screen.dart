@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:app_vida_saludable/config/theme/app_colors.dart';
-import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import 'package:app_vida_saludable/config/theme/app_colors.dart';
+import 'package:app_vida_saludable/presentation/screens/screens.dart';
+import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 
 class HomeAlimentacionScreen extends StatelessWidget {
   static const routeName = 'home-alimentacion-screen';
@@ -71,7 +73,12 @@ class HomeAlimentacionScreen extends StatelessWidget {
                                   size: 28,
                                 ),
                                 title: 'Mi progreso',
-                                onTap: () => {},
+                                onTap: () => {
+                                  context.goNamed(
+                                    MiProgresoAlimentacionScreen.routeName,
+                                    pathParameters: {'page': '2'},
+                                  ),
+                                },
                               ),
                               OptionMenuWidget(
                                 icon: const Icon(

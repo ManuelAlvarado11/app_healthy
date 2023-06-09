@@ -18,8 +18,10 @@ class _SplashAlimentacionScreenState extends State<SplashAlimentacionScreen> {
     super.initState();
 
     Future.delayed(const Duration(seconds: 2), () {
-      context
-          .go('${PagesScreen.routeName}/2/${HomeAlimentacionScreen.routeName}');
+      context.goNamed(
+        HomeAlimentacionScreen.routeName,
+        pathParameters: {'page': '2'},
+      );
     });
   }
 

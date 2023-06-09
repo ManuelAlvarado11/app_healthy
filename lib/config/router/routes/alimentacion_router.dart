@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:app_vida_saludable/config/theme/app_colors.dart';
 import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 
@@ -11,7 +12,16 @@ final alimentacionRouter = [
     builder: (context, state) => const _CustomPage(
       body: HomeAlimentacionScreen(),
     ),
-    routes: [],
+    routes: [
+      GoRoute(
+        path: MiProgresoAlimentacionScreen.routeName,
+        name: MiProgresoAlimentacionScreen.routeName,
+        builder: (context, state) => const _CustomPage(
+          title: 'Mi progreso',
+          body: MiProgresoAlimentacionScreen(),
+        ),
+      )
+    ],
   ),
 ];
 
@@ -28,7 +38,12 @@ class _CustomPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: title != null ? AppBar(title: Text(title!)) : null,
+      appBar: title != null
+          ? const CustomAppBar(
+              title: 'Mi progreso',
+              color: AlimentacionColors.primary,
+            )
+          : null,
       body: body,
       bottomNavigationBar: const CustomBottomNavigation(currentIndex: 2),
     );

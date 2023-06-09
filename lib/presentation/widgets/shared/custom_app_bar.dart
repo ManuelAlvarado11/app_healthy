@@ -18,30 +18,33 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PreferredSize(
-      preferredSize: Size(MediaQuery.of(context).size.width, 150.0),
-      child: AppBar(
-        title: Text(
-          title ?? '',
-          style: const TextStyle(color: AppColors.greyDark200),
-        ),
-        elevation: elevation,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: const [0.1, 0.0],
-                colors: <Color>[color, AppColors.white]),
+    return SafeArea(
+      child: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 150.0),
+        child: AppBar(
+          title: Text(
+            title ?? '',
+            style: const TextStyle(color: AppColors.greyDark200),
           ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: AppColors.black,
+          elevation: elevation,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: const [0.1, 0.0],
+                  colors: <Color>[color, AppColors.white]),
+            ),
           ),
-          onPressed: onPressed ?? () => context.canPop() ? context.pop() : null,
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: AppColors.black,
+            ),
+            onPressed:
+                onPressed ?? () => context.canPop() ? context.pop() : null,
+          ),
         ),
       ),
     );

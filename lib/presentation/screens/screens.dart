@@ -23,3 +23,4 @@ export './vidaSaludable/home_vida_saludable_screen.dart';
 // ALIMENTACION
 export './vidaSaludable/alimentacion/splash_alimentacion_screen.dart';
 export './vidaSaludable/alimentacion/home_alimentacion_screen.dart';
+export './vidaSaludable/alimentacion/mi_progreso_alimentacion_screen.dart';

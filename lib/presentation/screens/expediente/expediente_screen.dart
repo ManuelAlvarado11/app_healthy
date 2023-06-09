@@ -19,6 +19,7 @@ class ExpedienteScreen extends StatelessWidget {
         appBar: isSincronizacion
             ? null
             : CustomAppBar(
+                title: 'Expediente del usuario',
                 onPressed: () => context.go('${PagesScreen.routeName}/0'),
               ),
         body: SingleChildScrollView(

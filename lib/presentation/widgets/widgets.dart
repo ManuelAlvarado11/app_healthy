@@ -6,6 +6,12 @@ export './home/notification_widget.dart';
 export './expediente/profile_info_widget.dart';
 export './expediente/expediente_info_widget.dart';
 
+// VIDA SALUDABLE
+export './vidaSaludable/menu_vida_saludable.dart';
+
+// ALIMENTACION
+export './vidaSaludable/alimentacion/button_mi_progreso_widget.dart';
+
 // SHARED
 export './shared/custom_bottom_navigation.dart';
 export './shared/custom_text_form_field.dart';
