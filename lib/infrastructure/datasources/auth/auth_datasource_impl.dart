@@ -15,8 +15,7 @@ class AuthDataSourceImpl extends AuthDataSource {
         'password': password,
       });
 
-      final loginResponse =
-          LoginResponseMapper.loginResponseJsonToEntity(response.data);
+      final loginResponse = LoginResponseMapper.jsonToEntity(response.data);
       return loginResponse;
     } on DioError catch (e) {
       if (e.response?.statusCode == 401) {
@@ -44,8 +43,7 @@ class AuthDataSourceImpl extends AuthDataSource {
       final response = await ApiService()
           .dio
           .post('/refresh', data: {'refresh_token': token});
-      final loginResponse =
-          LoginResponseMapper.loginResponseJsonToEntity(response.data);
+      final loginResponse = LoginResponseMapper.jsonToEntity(response.data);
       return loginResponse;
     } on DioError catch (e) {
       if (e.response?.statusCode == 401) {
