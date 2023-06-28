@@ -13,11 +13,15 @@ final alimentacionRouter = [
       body: HomeAlimentacionScreen(),
     ),
     routes: [
+      // MI PROGRESO
       GoRoute(
         path: MiProgresoAlimentacionScreen.routeName,
         name: MiProgresoAlimentacionScreen.routeName,
         builder: (context, state) => const _CustomPage(
-          title: 'Mi progreso',
+          appBar: CustomAppBar(
+            title: 'Mi progreso',
+            color: AlimentacionColors.primary,
+          ),
           body: MiProgresoAlimentacionScreen(),
         ),
       )
@@ -25,25 +29,20 @@ final alimentacionRouter = [
   ),
 ];
 
-// Widget usado para mantener el bottomNavigationBar del padre
+// WIDGET ----> REUTILIZAR BOTTOM NAVIGATION BAR DEL PADRE
 class _CustomPage extends StatelessWidget {
-  final String? title;
+  final CustomAppBar? appBar;
   final Widget body;
 
   const _CustomPage({
+    this.appBar,
     required this.body,
-    this.title,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: title != null
-          ? const CustomAppBar(
-              title: 'Mi progreso',
-              color: AlimentacionColors.primary,
-            )
-          : null,
+      appBar: appBar,
       body: body,
       bottomNavigationBar: const CustomBottomNavigation(currentIndex: 2),
     );
