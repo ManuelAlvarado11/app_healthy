@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   animate_do: ^3.0.2
+  cached_network_image: ^3.2.3
   cupertino_icons: ^1.0.2
   dio: ^5.1.2
   flutter:
@@ -22,6 +23,7 @@ dependencies:
   material_design_icons_flutter: ^6.0.7096
   shared_preferences: ^2.1.1
   syncfusion_flutter_charts: ^21.2.8
+  youtube_player_flutter: ^8.1.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0
