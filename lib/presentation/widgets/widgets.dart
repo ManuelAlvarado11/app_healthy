@@ -8,6 +8,7 @@ export './expediente/expediente_info_widget.dart';
 
 // VIDA SALUDABLE
 export './vidaSaludable/menu_vida_saludable.dart';
+export './vidaSaludable/contenido_widget.dart';
 
 // ALIMENTACION
 export './vidaSaludable/alimentacion/button_mi_progreso_widget.dart';
@@ -23,3 +24,4 @@ export './shared/profile_app_bar.dart';
 export './shared/profile_picture.dart';
 export './shared/option_menu_widget.dart';
 export './shared/result_empty_widget.dart';
+export './shared/cached_network_image_widget.dart';

@@ -1,5 +1,7 @@
+import 'package:app_vida_saludable/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -14,8 +16,6 @@ class HomeAlimentacionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final recomendaciones = [];
-
     return SafeArea(
       child: Column(
         children: [
@@ -154,27 +154,46 @@ class HomeAlimentacionScreen extends StatelessWidget {
               ),
             ),
           ),
-          Flexible(
-            child: recomendaciones.isEmpty
-                ? const Center(
-                    child: ResultEmptyWidget(
-                      mensajeVacio: 'No hay contenido de categoria',
-                      urlImagen: "assets/svg/vacio_alimentacion.svg",
-                    ),
-                  )
-                : RefreshIndicator(
-                    onRefresh: () async {},
-                    color: AlimentacionColors.secondary,
-                    backgroundColor: Colors.white,
-                    child: ListView(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      children: [],
-                    ),
-                  ),
-          ),
+          _RecomendacionesList(),
         ],
       ),
+    );
+  }
+}
+
+class _RecomendacionesList extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    // PROVIDER
+    final recomendaciones = ref.watch(alimentacionProvider);
+
+    return Flexible(
+      child: recomendaciones.recomendaciones.isEmpty
+          ? const Center(
+              child: ResultEmptyWidget(
+                mensajeVacio: 'No hay contenido de categoria',
+                urlImagen: "assets/svg/vacio_alimentacion.svg",
+              ),
+            )
+          : RefreshIndicator(
+              onRefresh: () async {},
+              color: AlimentacionColors.secondary,
+              backgroundColor: Colors.white,
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                children: [
+                  ...recomendaciones.recomendaciones
+                      .toList()
+                      .map((recomendacion) {
+                    return ContenidoWidget(
+                      contenido: recomendacion,
+                      tipo: 2,
+                    );
+                  }).toList(),
+                ],
+              ),
+            ),
     );
   }
 }
