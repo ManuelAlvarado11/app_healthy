@@ -38,11 +38,11 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<LoginResponse> checkAuthStatus(String token) async {
+  Future<LoginResponse> checkAuthStatus(String refreshToken) async {
     try {
       final response = await ApiService()
           .dio
-          .post('/refresh', data: {'refresh_token': token});
+          .post('/refresh', data: {'refresh_token': refreshToken});
       final loginResponse = LoginResponseMapper.jsonToEntity(response.data);
       return loginResponse;
     } on DioError catch (e) {
