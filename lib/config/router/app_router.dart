@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:app_vida_saludable/config/router/app_router_notifir.dart';
+import 'package:app_vida_saludable/config/router/app_router_notifier.dart';
 import 'package:app_vida_saludable/config/router/routes/routes.dart';
 import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:app_vida_saludable/presentation/providers/providers.dart';
