@@ -24,7 +24,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: AppBar(
           title: Text(
             title ?? '',
-            style: const TextStyle(color: AppColors.greyDark200),
+            style: const TextStyle(
+              fontFamily: 'MuseoSans',
+              fontWeight: FontWeight.w700,
+              fontSize: 22.0,
+              color: AppColors.greyDark,
+            ),
           ),
           elevation: elevation,
           flexibleSpace: Container(
@@ -38,9 +43,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back,
-              color: AppColors.black,
+              color: color,
             ),
             onPressed:
                 onPressed ?? () => context.canPop() ? context.pop() : null,

@@ -105,7 +105,12 @@ class HomeAlimentacionScreen extends StatelessWidget {
                                   size: 28,
                                 ),
                                 title: 'Contenido',
-                                onTap: () => {},
+                                onTap: () => {
+                                  context.goNamed(
+                                    ContenidoAlimentacionScreen.routeName,
+                                    pathParameters: {'page': '2'},
+                                  )
+                                },
                               ),
                               OptionMenuWidget(
                                 icon: const Icon(

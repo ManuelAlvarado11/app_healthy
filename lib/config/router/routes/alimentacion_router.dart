@@ -24,6 +24,19 @@ final alimentacionRouter = [
           ),
           body: MiProgresoAlimentacionScreen(),
         ),
+      ),
+
+      // CONTENIDOS
+      GoRoute(
+        path: ContenidoAlimentacionScreen.routeName,
+        name: ContenidoAlimentacionScreen.routeName,
+        builder: (context, state) => const _CustomPage(
+          appBar: CustomAppBar(
+            title: 'Contenidos',
+            color: AlimentacionColors.primary,
+          ),
+          body: ContenidoAlimentacionScreen(),
+        ),
       )
     ],
   ),
