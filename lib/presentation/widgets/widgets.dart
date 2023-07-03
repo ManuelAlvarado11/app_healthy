@@ -23,5 +23,5 @@ export './shared/profile_app_bar.dart';
 export './shared/profile_picture.dart';
 export './shared/option_menu_widget.dart';
 export './shared/result_empty_widget.dart';
-export './shared/contenido_widget.dart';
+export './shared/custom_card_content_widget.dart';
 export './shared/cached_network_image_widget.dart';

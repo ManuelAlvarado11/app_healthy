@@ -186,7 +186,7 @@ class _RecomendacionesList extends ConsumerWidget {
                   ...recomendaciones.recomendaciones
                       .toList()
                       .map((recomendacion) {
-                    return ContenidoWidget(
+                    return CustomCardContentWidget(
                       contenido: recomendacion,
                       tipo: 2,
                     );

@@ -5,16 +5,14 @@ import 'package:app_vida_saludable/domain/entities/entities.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class ContenidoWidget extends StatelessWidget {
+class CustomCardContentWidget extends StatelessWidget {
   final RecomendacionResponse contenido;
   final int tipo;
-  final int? posicion;
 
-  const ContenidoWidget({
+  const CustomCardContentWidget({
     Key? key,
     required this.contenido,
     required this.tipo,
-    this.posicion,
   }) : super(key: key);
 
   @override
@@ -30,11 +28,6 @@ class ContenidoWidget extends StatelessWidget {
             case 3:
               break;
             case 4:
-            case 7:
-              break;
-            case 15:
-              break;
-            case 17:
               break;
           }
         },
@@ -50,12 +43,12 @@ class ContenidoWidget extends StatelessWidget {
                 child: Stack(
                   children: [
                     CachedNetworkImageWidget(
-                      radius: 25,
                       src: tipo == 4 || tipo == 17
                           ? "https://img.youtube.com/vi/${YoutubePlayer.convertUrlToId(contenido.urlVideo ?? "")}/0.jpg"
                           : "${Environment.apiUrl}/files?path=${contenido.banner}",
                       height: tipo == 4 ? 200 : 125,
                       width: size.width,
+                      radius: 25,
                     ),
                     Positioned(
                       top: 0,
