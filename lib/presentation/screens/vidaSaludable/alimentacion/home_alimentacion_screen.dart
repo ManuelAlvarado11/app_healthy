@@ -1,4 +1,3 @@
-import 'package:app_vida_saludable/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +7,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
 import 'package:app_vida_saludable/presentation/screens/screens.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
+import 'package:app_vida_saludable/presentation/providers/providers.dart';
 
 class HomeAlimentacionScreen extends StatelessWidget {
   static const routeName = 'home-alimentacion-screen';
@@ -170,10 +170,10 @@ class _RecomendacionesList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // PROVIDER
-    final recomendaciones = ref.watch(alimentacionProvider);
+    final provider = ref.watch(alimentacionProvider);
 
     return Flexible(
-      child: recomendaciones.recomendaciones.isEmpty
+      child: provider.recomendaciones.isEmpty
           ? const Center(
               child: ResultEmptyWidget(
                 mensajeVacio: 'No hay contenido de categoria',
@@ -181,16 +181,16 @@ class _RecomendacionesList extends ConsumerWidget {
               ),
             )
           : RefreshIndicator(
-              onRefresh: () async {},
+              onRefresh: () async {
+                ref.read(alimentacionProvider.notifier).getRecomendaciones(2);
+              },
               color: AlimentacionColors.secondary,
               backgroundColor: Colors.white,
               child: ListView(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 children: [
-                  ...recomendaciones.recomendaciones
-                      .toList()
-                      .map((recomendacion) {
+                  ...provider.recomendaciones.toList().map((recomendacion) {
                     return CustomCardContentWidget(
                       contenido: recomendacion,
                       tipo: 2,

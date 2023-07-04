@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:app_vida_saludable/config/constants/environment.dart';
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
-import 'package:app_vida_saludable/domain/entities/entities.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class CustomCardContentWidget extends StatelessWidget {
-  final RecomendacionResponse contenido;
+  final contenido;
   final int tipo;
 
   const CustomCardContentWidget({
