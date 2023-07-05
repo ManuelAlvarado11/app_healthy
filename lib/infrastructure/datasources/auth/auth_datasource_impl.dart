@@ -18,22 +18,12 @@ class AuthDataSourceImpl extends AuthDataSource {
       final loginResponse = LoginResponseMapper.jsonToEntity(response.data);
       return loginResponse;
     } on DioError catch (e) {
-      if (e.response?.statusCode == 401) {
-        throw CustomError(e.response?.data['err']['description'] ??
-            'Credenciales incorrectas');
-      }
-      if (e.type == DioErrorType.connectionTimeout) {
-        throw CustomError('Revisar conexion a internert');
-      }
-      throw Exception();
-    } catch (e) {
-      throw Exception();
+      throw CustomError(e.message);
     }
   }
 
   @override
   Future<LoginResponse> register(String dui, String password) {
-    // TODO: implement register
     throw UnimplementedError();
   }
 
@@ -46,13 +36,7 @@ class AuthDataSourceImpl extends AuthDataSource {
       final loginResponse = LoginResponseMapper.jsonToEntity(response.data);
       return loginResponse;
     } on DioError catch (e) {
-      if (e.response?.statusCode == 401) {
-        throw CustomError(
-            e.response?.data['err']['description'] ?? 'Token incorrecto');
-      }
-      throw Exception();
-    } catch (e) {
-      throw Exception();
+      throw CustomError(e.message);
     }
   }
 }

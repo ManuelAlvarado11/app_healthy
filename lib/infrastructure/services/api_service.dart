@@ -17,6 +17,31 @@ class ApiService {
         options.baseUrl = Environment.apiUrl;
         return handler.next(options);
       },
+      onError: (e, handler) async {
+        var error = DioError(
+          response: e.response,
+          type: e.type,
+          requestOptions: e.requestOptions,
+        );
+
+        if (e.response?.statusCode == 401) {
+          error = error.copyWith(
+              message:
+                  e.response?.data['err']['description'] ?? 'Token incorrecto');
+        }
+
+        if (e.response?.statusCode == 500) {
+          error = error.copyWith(
+              message:
+                  e.response?.data['err']['description'] ?? 'Status code 500');
+        }
+
+        if (e.type == DioErrorType.connectionTimeout) {
+          error = error.copyWith(message: 'Revisar conexion a internert');
+        }
+
+        return handler.reject(error);
+      },
     ));
   }
 
