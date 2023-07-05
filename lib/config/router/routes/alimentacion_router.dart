@@ -10,6 +10,7 @@ final alimentacionRouter = [
     path: HomeAlimentacionScreen.routeName,
     name: HomeAlimentacionScreen.routeName,
     builder: (context, state) => const _CustomPage(
+      title: null,
       body: HomeAlimentacionScreen(),
     ),
     routes: [
@@ -18,10 +19,7 @@ final alimentacionRouter = [
         path: MiProgresoAlimentacionScreen.routeName,
         name: MiProgresoAlimentacionScreen.routeName,
         builder: (context, state) => const _CustomPage(
-          appBar: CustomAppBar(
-            title: 'Mi progreso',
-            color: AlimentacionColors.primary,
-          ),
+          title: 'Contenidos',
           body: MiProgresoAlimentacionScreen(),
         ),
       ),
@@ -31,10 +29,7 @@ final alimentacionRouter = [
         path: ContenidoAlimentacionScreen.routeName,
         name: ContenidoAlimentacionScreen.routeName,
         builder: (context, state) => const _CustomPage(
-          appBar: CustomAppBar(
-            title: 'Contenidos',
-            color: AlimentacionColors.primary,
-          ),
+          title: 'Contenidos',
           body: ContenidoAlimentacionScreen(),
         ),
       )
@@ -42,20 +37,25 @@ final alimentacionRouter = [
   ),
 ];
 
-// WIDGET ----> REUTILIZAR BOTTOM NAVIGATION BAR DEL PADRE
+// PAGE PARA REUTILIZAR BOTTOM NAVIGATION BAR DEL PADRE
 class _CustomPage extends StatelessWidget {
-  final CustomAppBar? appBar;
+  final String? title;
   final Widget body;
 
   const _CustomPage({
-    this.appBar,
+    this.title,
     required this.body,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar,
+      appBar: title != null
+          ? CustomAppBar(
+              title: title,
+              color: AlimentacionColors.primary,
+            )
+          : null,
       body: body,
       bottomNavigationBar: const CustomBottomNavigation(currentIndex: 2),
     );
