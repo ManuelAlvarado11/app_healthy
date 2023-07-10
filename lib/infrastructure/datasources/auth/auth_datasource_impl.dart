@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:app_vida_saludable/infrastructure/services/api_service.dart';
-import 'package:app_vida_saludable/config/utils/errors/auth_errors.dart';
+import 'package:app_vida_saludable/config/utils/errors/custom_errors.dart';
 
 import 'package:app_vida_saludable/infrastructure/mappers/mappers.dart';
 import 'package:app_vida_saludable/domain/datasources/datasources.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:app_vida_saludable/config/utils/errors/auth_errors.dart';
+import 'package:app_vida_saludable/config/utils/errors/custom_errors.dart';
 import 'package:app_vida_saludable/domain/entities/entities.dart';
 import 'package:app_vida_saludable/domain/repositories/repositories.dart';
 import 'package:app_vida_saludable/infrastructure/datasources/datasources.dart';
