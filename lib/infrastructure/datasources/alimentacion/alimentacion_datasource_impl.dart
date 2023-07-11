@@ -50,8 +50,21 @@ class AlimentacionDataSourceImpl extends AlimentacionDataSource {
   }
 
   @override
-  Future<List<CategoriaResponse>> getCategorias() {
-    // TODO: implement getCategorias
-    throw UnimplementedError();
+  Future<List<CategoriaResponse>> getCategorias() async {
+    try {
+      final List<CategoriaResponse> categorias = [];
+
+      final response = await ApiService(accessToken: accessToken)
+          .dio
+          .get<List>('categoria-receta');
+
+      for (var categoria in response.data ?? []) {
+        categorias.add(CategoriaResponseMapper.jsonToEntity(categoria));
+      }
+
+      return categorias;
+    } on DioError catch (e) {
+      throw CustomError(e.message);
+    }
   }
 }
