@@ -18,6 +18,7 @@ class AlimentacionNotifier extends StateNotifier<AlimentacionState> {
       : super(AlimentacionState()) {
     getRecomendaciones(2);
     getContenidos(3);
+    getCategorias();
   }
 
   Future getRecomendaciones(int tipo) async {
@@ -42,6 +43,17 @@ class AlimentacionNotifier extends StateNotifier<AlimentacionState> {
       contenidos: contenidos,
     );
   }
+
+  Future getCategorias() async {
+    state = state.copyWith(isLoading: true);
+
+    final categorias = await alimentacionRepository.getCategorias();
+
+    state = state.copyWith(
+      isLoading: false,
+      categorias: categorias,
+    );
+  }
 }
 
 // STATE
@@ -49,21 +61,25 @@ class AlimentacionState {
   final bool isLoading;
   final List<RecomendacionResponse> recomendaciones;
   final List<ContenidoResponse> contenidos;
+  final List<CategoriaResponse> categorias;
 
   AlimentacionState({
     this.isLoading = false,
     this.recomendaciones = const [],
     this.contenidos = const [],
+    this.categorias = const [],
   });
 
   AlimentacionState copyWith({
     bool? isLoading,
     List<RecomendacionResponse>? recomendaciones,
     List<ContenidoResponse>? contenidos,
+    List<CategoriaResponse>? categorias,
   }) =>
       AlimentacionState(
         isLoading: isLoading ?? this.isLoading,
         recomendaciones: recomendaciones ?? this.recomendaciones,
         contenidos: contenidos ?? this.contenidos,
+        categorias: categorias ?? this.categorias,
       );
 }
