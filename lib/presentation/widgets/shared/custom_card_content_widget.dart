@@ -5,7 +5,7 @@ import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class CustomCardContentWidget extends StatelessWidget {
-  final contenido;
+  final dynamic contenido;
   final int tipo;
 
   const CustomCardContentWidget({
@@ -76,7 +76,9 @@ class CustomCardContentWidget extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  contenido.titulo,
+                                  tipo == 5
+                                      ? contenido.nombre
+                                      : contenido.titulo,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     fontFamily: 'MuseoSans',
@@ -142,19 +144,15 @@ class CustomCardContentWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              Visibility(
-                visible: tipo != 15 && tipo != 19,
-                child: Align(
-                  alignment:
-                      tipo == 4 ? Alignment.center : Alignment.centerLeft,
-                  child: Text(
-                    contenido.titulo,
-                    textAlign: tipo == 4 ? TextAlign.center : TextAlign.start,
-                    style: const TextStyle(
-                      fontFamily: "MuseoSans",
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  tipo == 5 ? contenido.nombre : contenido.titulo,
+                  textAlign: TextAlign.start,
+                  style: const TextStyle(
+                    fontFamily: "MuseoSans",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),

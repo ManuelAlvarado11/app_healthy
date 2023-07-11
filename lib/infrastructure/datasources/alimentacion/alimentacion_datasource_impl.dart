@@ -56,7 +56,7 @@ class AlimentacionDataSourceImpl extends AlimentacionDataSource {
 
       final response = await ApiService(accessToken: accessToken)
           .dio
-          .get<List>('categoria-receta');
+          .get<List>('/categoria-receta');
 
       for (var categoria in response.data ?? []) {
         categorias.add(CategoriaResponseMapper.jsonToEntity(categoria));

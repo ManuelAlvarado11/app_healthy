@@ -10,6 +10,6 @@ class CategoriaResponseMapper {
         activo: json['activo'],
         fechaHoraReg: json['fechaHoraReg'],
         creadoPor: json['creadoPor'],
-        idCategoria: json['idCategoria'],
+        idCategoria: json['id_categoria'] ?? 0,
       );
 }

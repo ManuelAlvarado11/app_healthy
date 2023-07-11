@@ -119,7 +119,12 @@ class HomeAlimentacionScreen extends StatelessWidget {
                                   size: 28,
                                 ),
                                 title: 'Recetas saludables',
-                                onTap: () => {},
+                                onTap: () => {
+                                  context.goNamed(
+                                    CategoriaAlimentacionScreen.routeName,
+                                    pathParameters: {'page': '2'},
+                                  )
+                                },
                               ),
                             ],
                           ),

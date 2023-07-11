@@ -25,3 +25,4 @@ export './vidaSaludable/alimentacion/splash_alimentacion_screen.dart';
 export './vidaSaludable/alimentacion/home_alimentacion_screen.dart';
 export './vidaSaludable/alimentacion/mi_progreso_alimentacion_screen.dart';
 export './vidaSaludable/alimentacion/contenidos_alimentacion_screen.dart';
+export './vidaSaludable/alimentacion/categorias_alimentacion_screen.dart';

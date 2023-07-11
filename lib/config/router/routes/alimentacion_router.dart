@@ -1,3 +1,4 @@
+import 'package:app_vida_saludable/presentation/screens/vidaSaludable/alimentacion/categorias_alimentacion_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
@@ -19,7 +20,7 @@ final alimentacionRouter = [
         path: MiProgresoAlimentacionScreen.routeName,
         name: MiProgresoAlimentacionScreen.routeName,
         builder: (context, state) => const _CustomPage(
-          title: 'Contenidos',
+          title: 'Mi Progreso',
           body: MiProgresoAlimentacionScreen(),
         ),
       ),
@@ -31,6 +32,16 @@ final alimentacionRouter = [
         builder: (context, state) => const _CustomPage(
           title: 'Contenidos',
           body: ContenidoAlimentacionScreen(),
+        ),
+      ),
+
+      // RECETAS SALUDABLES
+      GoRoute(
+        path: CategoriaAlimentacionScreen.routeName,
+        name: CategoriaAlimentacionScreen.routeName,
+        builder: (context, state) => const _CustomPage(
+          title: 'Recetas Saludables',
+          body: CategoriaAlimentacionScreen(),
         ),
       )
     ],
