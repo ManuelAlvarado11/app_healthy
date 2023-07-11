@@ -48,4 +48,10 @@ class AlimentacionDataSourceImpl extends AlimentacionDataSource {
       throw CustomError(e.message);
     }
   }
+
+  @override
+  Future<List<CategoriaResponse>> getCategorias() {
+    // TODO: implement getCategorias
+    throw UnimplementedError();
+  }
 }

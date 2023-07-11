@@ -16,4 +16,9 @@ class AlimentacionRepositoryImpl extends AlimentacionRepository {
   Future<List<ContenidoResponse>> getContenidos(int tipo) {
     return dataSource.getContenidos(tipo);
   }
+
+  @override
+  Future<List<CategoriaResponse>> getCategorias() {
+    return dataSource.getCategorias();
+  }
 }
