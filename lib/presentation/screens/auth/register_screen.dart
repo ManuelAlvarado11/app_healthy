@@ -76,91 +76,88 @@ class _RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50),
-      child: Column(
-        children: [
-          // NOMBRES
-          const CustomTextFormField(
-            label: 'Nombres*',
-            keyboardType: TextInputType.emailAddress,
-          ),
-          const SizedBox(height: 30),
+    return Column(
+      children: [
+        // NOMBRES
+        const CustomTextFormField(
+          label: 'Nombres*',
+          keyboardType: TextInputType.emailAddress,
+        ),
+        const SizedBox(height: 10),
 
-          // APELLIDOS
-          const CustomTextFormField(
-            label: 'Apellidos*',
-            keyboardType: TextInputType.emailAddress,
-          ),
-          const SizedBox(height: 30),
+        // APELLIDOS
+        const CustomTextFormField(
+          label: 'Apellidos*',
+          keyboardType: TextInputType.emailAddress,
+        ),
+        const SizedBox(height: 10),
 
-          // DUI
-          CustomTextFormField(
-            label: 'Numero DUI*',
-            keyboardType: const TextInputType.numberWithOptions(
-                decimal: false, signed: false),
-            onChanged: (value) {
-              String dui = value.replaceAll("-", "");
-              return dui;
-            },
-          ),
-          const SizedBox(height: 30),
+        // DUI
+        CustomTextFormField(
+          label: 'Numero DUI*',
+          keyboardType: const TextInputType.numberWithOptions(
+              decimal: false, signed: false),
+          onChanged: (value) {
+            String dui = value.replaceAll("-", "");
+            return dui;
+          },
+        ),
+        const SizedBox(height: 10),
 
-          // DEPARTAMENTO
-          const CustomContainerSelected(
-            txtSelected: 'Departamento',
-          ),
-          const SizedBox(height: 30),
+        // DEPARTAMENTO
+        const CustomSelectFormField(
+          label: 'Departamento',
+        ),
+        const SizedBox(height: 10),
 
-          // MUNICIPIO
-          const CustomContainerSelected(
-            txtSelected: 'Municipio',
-          ),
-          const SizedBox(height: 30),
+        // MUNICIPIO
+        const CustomSelectFormField(
+          label: 'Municipio',
+        ),
+        const SizedBox(height: 10),
 
-          // TELEFONO
-          CustomTextFormField(
-            label: 'Numero de teléfono*',
-            keyboardType: const TextInputType.numberWithOptions(
-                decimal: false, signed: false),
-            onChanged: (value) {
-              String dui = value.replaceAll("-", "");
-              return dui;
-            },
-          ),
-          const SizedBox(height: 30),
+        // TELEFONO
+        CustomTextFormField(
+          label: 'Numero de teléfono*',
+          keyboardType: const TextInputType.numberWithOptions(
+              decimal: false, signed: false),
+          onChanged: (value) {
+            String dui = value.replaceAll("-", "");
+            return dui;
+          },
+        ),
+        const SizedBox(height: 10),
 
-          // CORREO
-          const CustomTextFormField(
-            label: 'Correo*',
-            keyboardType: TextInputType.emailAddress,
-          ),
-          const SizedBox(height: 30),
+        // CORREO
+        const CustomTextFormField(
+          label: 'Correo*',
+          keyboardType: TextInputType.emailAddress,
+        ),
+        const SizedBox(height: 10),
 
-          // PASSWORD
-          const CustomTextFormField(
-            label: 'Contraseña',
-            obscureText: true,
-          ),
-          const SizedBox(height: 30),
-          const CustomTextFormField(
-            label: 'Repita la contraseña',
-            obscureText: true,
-          ),
-          const SizedBox(height: 30),
+        // PASSWORD
+        const CustomTextFormField(
+          label: 'Contraseña',
+          obscureText: true,
+        ),
+        const SizedBox(height: 10),
+        const CustomTextFormField(
+          label: 'Repita la contraseña',
+          obscureText: true,
+        ),
+        const SizedBox(height: 10),
 
-          // BUTTON
-          SizedBox(
-            width: double.infinity,
-            height: 60,
-            child: CustomTextButton(
-              text: 'Registrarme',
-              onPressed: () {},
-            ),
+        // BUTTON
+        SizedBox(
+          width: double.infinity,
+          height: 60,
+          child: CustomTextButton(
+            text: 'Registrarme',
+            onPressed: () {},
           ),
-          const SizedBox(height: 30),
-        ],
-      ),
+        ),
+        const SizedBox(height: 10),
+      ],
     );
   }
 }

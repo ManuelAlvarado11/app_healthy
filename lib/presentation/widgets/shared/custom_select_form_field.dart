@@ -1,55 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
 
-class CustomTextFormField extends StatefulWidget {
+class CustomSelectFormField extends StatefulWidget {
   final String? label;
   final Widget? icon;
-  final bool obscureText;
   final Color? backgroundColor;
   final Color? labelColor;
-  final bool isSwicth;
   final double? width;
   final String? hint;
   final String? errorMessage;
-  final TextInputType? keyboardType;
-  final Function(String)? onChanged;
-  final List<TextInputFormatter>? listTextInputFormatter;
-  final TextEditingController? controller;
 
-  const CustomTextFormField({
+  const CustomSelectFormField({
     super.key,
     this.label,
     this.icon,
-    this.obscureText = false,
     this.backgroundColor,
     this.labelColor,
-    this.isSwicth = false,
     this.width,
     this.hint,
     this.errorMessage,
-    this.keyboardType = TextInputType.text,
-    this.onChanged,
-    this.listTextInputFormatter,
-    this.controller,
   });
 
   @override
-  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+  State<CustomSelectFormField> createState() => _CustomSelectFormFieldState();
 }
 
-class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  bool isObscure = false;
-  FocusNode myFocusNode = FocusNode();
-
-  @override
-  void initState() {
-    isObscure = widget.obscureText;
-    super.initState();
-  }
-
+class _CustomSelectFormFieldState extends State<CustomSelectFormField> {
   @override
   Widget build(BuildContext context) {
+    const List<String> list = <String>[
+      'Municipio',
+      'Departamento',
+      'One',
+      'Two',
+      'Three',
+      'Four'
+    ];
+
     return Column(
       children: [
         Padding(
@@ -62,12 +49,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: TextFormField(
-                keyboardType: widget.keyboardType,
-                inputFormatters: widget.listTextInputFormatter,
-                controller: widget.controller,
-                obscureText: isObscure,
-                onChanged: widget.onChanged,
+              child: DropdownButtonFormField(
+                onChanged: (String? newValue) {
+                  setState(() {});
+                },
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   icon: widget.icon,
@@ -78,18 +63,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     color: widget.labelColor,
                     fontSize: 14,
                   ),
-                  suffixIcon: widget.obscureText
-                      ? IconButton(
-                          icon: Icon(
-                            isObscure ? Icons.visibility_off : Icons.visibility,
-                          ),
-                          onPressed: () {
-                            isObscure = !isObscure;
-                            setState(() {});
-                          },
-                        )
-                      : null,
                 ),
+                dropdownColor: AppColors.white,
+                items: list.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
             ),
           ),
