@@ -1,2 +1,2 @@
-export './auth/auth_repository.dart';
-export './alimentacion/alimentacion_repository.dart';
+export 'auth_repository.dart';
+export 'alimentacion_repository.dart';

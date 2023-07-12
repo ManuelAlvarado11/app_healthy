@@ -1,2 +1,2 @@
-export './auth/auth_datasource.dart';
-export './alimentacion/alimentacion_datasource.dart';
+export 'auth_datasource.dart';
+export 'alimentacion_datasource.dart';
