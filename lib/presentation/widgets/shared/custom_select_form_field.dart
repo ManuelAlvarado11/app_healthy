@@ -28,14 +28,7 @@ class CustomSelectFormField extends StatefulWidget {
 class _CustomSelectFormFieldState extends State<CustomSelectFormField> {
   @override
   Widget build(BuildContext context) {
-    const List<String> list = <String>[
-      'Municipio',
-      'Departamento',
-      'One',
-      'Two',
-      'Three',
-      'Four'
-    ];
+    const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
     return Column(
       children: [
@@ -50,9 +43,7 @@ class _CustomSelectFormFieldState extends State<CustomSelectFormField> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: DropdownButtonFormField(
-                onChanged: (String? newValue) {
-                  setState(() {});
-                },
+                onChanged: (String? newValue) {},
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   icon: widget.icon,

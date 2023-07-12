@@ -148,15 +148,12 @@ class _RegisterForm extends StatelessWidget {
         const SizedBox(height: 10),
 
         // BUTTON
-        SizedBox(
-          width: double.infinity,
-          height: 60,
-          child: CustomTextButton(
-            text: 'Registrarme',
-            onPressed: () {},
-          ),
+        CustomTextButton(
+          text: 'Registrarme',
+          buttonColor: AppColors.primary,
+          onPressed: () => {},
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 40),
       ],
     );
   }
