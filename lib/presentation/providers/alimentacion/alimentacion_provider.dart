@@ -3,12 +3,33 @@ import 'package:app_vida_saludable/domain/entities/entities.dart';
 import 'package:app_vida_saludable/domain/repositories/repositories.dart';
 import 'package:app_vida_saludable/presentation/providers/providers.dart';
 
-// PROVIDER
-final alimentacionProvider =
-    StateNotifierProvider<AlimentacionNotifier, AlimentacionState>((ref) {
-  final alimentacionRepository = ref.watch(alimentacionRepositoryProvider);
-  return AlimentacionNotifier(alimentacionRepository: alimentacionRepository);
-});
+// STATE
+class AlimentacionState {
+  final bool isLoading;
+  final List<RecomendacionResponse> recomendaciones;
+  final List<ContenidoResponse> contenidos;
+  final List<CategoriaResponse> categorias;
+
+  AlimentacionState({
+    this.isLoading = false,
+    this.recomendaciones = const [],
+    this.contenidos = const [],
+    this.categorias = const [],
+  });
+
+  AlimentacionState copyWith({
+    bool? isLoading,
+    List<RecomendacionResponse>? recomendaciones,
+    List<ContenidoResponse>? contenidos,
+    List<CategoriaResponse>? categorias,
+  }) =>
+      AlimentacionState(
+        isLoading: isLoading ?? this.isLoading,
+        recomendaciones: recomendaciones ?? this.recomendaciones,
+        contenidos: contenidos ?? this.contenidos,
+        categorias: categorias ?? this.categorias,
+      );
+}
 
 // NOTIFIER
 class AlimentacionNotifier extends StateNotifier<AlimentacionState> {
@@ -56,30 +77,10 @@ class AlimentacionNotifier extends StateNotifier<AlimentacionState> {
   }
 }
 
-// STATE
-class AlimentacionState {
-  final bool isLoading;
-  final List<RecomendacionResponse> recomendaciones;
-  final List<ContenidoResponse> contenidos;
-  final List<CategoriaResponse> categorias;
+// PROVIDER
+final alimentacionProvider =
+    StateNotifierProvider<AlimentacionNotifier, AlimentacionState>((ref) {
+  final alimentacionRepository = ref.watch(alimentacionRepositoryProvider);
 
-  AlimentacionState({
-    this.isLoading = false,
-    this.recomendaciones = const [],
-    this.contenidos = const [],
-    this.categorias = const [],
-  });
-
-  AlimentacionState copyWith({
-    bool? isLoading,
-    List<RecomendacionResponse>? recomendaciones,
-    List<ContenidoResponse>? contenidos,
-    List<CategoriaResponse>? categorias,
-  }) =>
-      AlimentacionState(
-        isLoading: isLoading ?? this.isLoading,
-        recomendaciones: recomendaciones ?? this.recomendaciones,
-        contenidos: contenidos ?? this.contenidos,
-        categorias: categorias ?? this.categorias,
-      );
-}
+  return AlimentacionNotifier(alimentacionRepository: alimentacionRepository);
+});
