@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
+import 'package:app_vida_saludable/presentation/providers/providers.dart';
 
 class RegisterScreen extends StatelessWidget {
   static const routeName = '/register-screen';
@@ -71,11 +74,16 @@ class RegisterScreen extends StatelessWidget {
   }
 }
 
-class _RegisterForm extends StatelessWidget {
+class _RegisterForm extends ConsumerWidget {
   const _RegisterForm();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // PROVIDER
+    final provider = ref.watch(sharedProvider);
+    final departamentos = provider.departamentos;
+    final municipios = provider.municipios;
+
     return Column(
       children: [
         // NOMBRES
@@ -105,14 +113,16 @@ class _RegisterForm extends StatelessWidget {
         const SizedBox(height: 10),
 
         // DEPARTAMENTO
-        const CustomSelectFormField(
+        CustomSelectFormField(
           label: 'Departamento',
+          items: departamentos,
         ),
         const SizedBox(height: 10),
 
         // MUNICIPIO
-        const CustomSelectFormField(
+        CustomSelectFormField(
           label: 'Municipio',
+          items: municipios,
         ),
         const SizedBox(height: 10),
 
