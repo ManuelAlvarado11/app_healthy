@@ -51,9 +51,9 @@ class CustomSelectFormField extends StatelessWidget {
                   ),
                 ),
                 dropdownColor: AppColors.white,
-                items: items.map<DropdownMenuItem<dynamic>>((dynamic value) {
-                  return DropdownMenuItem<String>(
-                    value: value.nombre,
+                items: items.map<DropdownMenuItem<dynamic>>((value) {
+                  return DropdownMenuItem<dynamic>(
+                    value: value,
                     child: Text(value.nombre),
                   );
                 }).toList(),
