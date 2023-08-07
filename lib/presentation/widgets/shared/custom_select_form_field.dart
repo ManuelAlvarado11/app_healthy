@@ -10,6 +10,7 @@ class CustomSelectFormField extends StatelessWidget {
   final String? hint;
   final String? errorMessage;
   final List<dynamic> items;
+  final Function(dynamic)? onChanged;
 
   const CustomSelectFormField({
     super.key,
@@ -20,6 +21,7 @@ class CustomSelectFormField extends StatelessWidget {
     this.width,
     this.hint,
     this.errorMessage,
+    this.onChanged,
     required this.items,
   });
 
@@ -38,7 +40,7 @@ class CustomSelectFormField extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: DropdownButtonFormField<dynamic>(
-                onChanged: (dynamic newValue) {},
+                onChanged: onChanged,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   icon: icon,

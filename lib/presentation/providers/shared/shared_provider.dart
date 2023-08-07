@@ -33,7 +33,7 @@ class SharedNotifier extends StateNotifier<SharedState> {
 
   SharedNotifier({required this.sharedRepository}) : super(SharedState()) {
     getDepartamentos();
-    getMunicipios();
+    getMunicipios(1);
   }
 
   Future getDepartamentos() async {
@@ -44,10 +44,10 @@ class SharedNotifier extends StateNotifier<SharedState> {
     state = state.copyWith(isLoading: false, departamentos: departamentos);
   }
 
-  Future getMunicipios() async {
+  Future getMunicipios(int idDepartamento) async {
     state = state.copyWith(isLoading: true);
 
-    final municipios = await sharedRepository.getMunicipios(1);
+    final municipios = await sharedRepository.getMunicipios(idDepartamento);
 
     state = state.copyWith(isLoading: false, municipios: municipios);
   }

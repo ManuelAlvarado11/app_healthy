@@ -116,6 +116,9 @@ class _RegisterForm extends ConsumerWidget {
         CustomSelectFormField(
           label: 'Departamento',
           items: departamentos,
+          onChanged: (value) {
+            ref.read(sharedProvider.notifier).getMunicipios(value.id);
+          },
         ),
         const SizedBox(height: 10),
 
@@ -123,6 +126,7 @@ class _RegisterForm extends ConsumerWidget {
         CustomSelectFormField(
           label: 'Municipio',
           items: municipios,
+          onChanged: (value) => {},
         ),
         const SizedBox(height: 10),
 
