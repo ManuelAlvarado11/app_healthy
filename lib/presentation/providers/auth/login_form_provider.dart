@@ -3,12 +3,49 @@ import 'package:formz/formz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_vida_saludable/config/utils/inputs/inputs.dart';
 
-// Provider
-final loginFormProvider =
-    StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>((ref) {
-  final loginCallback = ref.watch(authProvider.notifier).login;
-  return LoginFormNotifier(loginCallback: loginCallback);
-});
+// State
+class LoginFormState {
+  final bool isPosting;
+  final bool isPosted;
+  final bool isValid;
+  final Dui dui;
+  final Password password;
+
+  LoginFormState({
+    this.isPosting = false,
+    this.isPosted = false,
+    this.isValid = false,
+    this.dui = const Dui.pure(),
+    this.password = const Password.pure(),
+  });
+
+  LoginFormState copyWith({
+    bool? isPosting,
+    bool? isPosted,
+    bool? isValid,
+    Dui? dui,
+    Password? password,
+  }) =>
+      LoginFormState(
+        isPosting: isPosting ?? this.isPosting,
+        isPosted: isPosted ?? this.isPosted,
+        isValid: isValid ?? this.isValid,
+        dui: dui ?? this.dui,
+        password: password ?? this.password,
+      );
+
+  @override
+  String toString() {
+    return '''
+      LoginFormState:
+        isPosting: $isPosting
+        isPosted: $isPosted
+        isValid: $isValid
+        dui: $dui
+        password: $password
+      ''';
+  }
+}
 
 // Notifier
 class LoginFormNotifier extends StateNotifier<LoginFormState> {
@@ -56,46 +93,9 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
   }
 }
 
-// State
-class LoginFormState {
-  final bool isPosting;
-  final bool isPosted;
-  final bool isValid;
-  final Dui dui;
-  final Password password;
-
-  LoginFormState({
-    this.isPosting = false,
-    this.isPosted = false,
-    this.isValid = false,
-    this.dui = const Dui.pure(),
-    this.password = const Password.pure(),
-  });
-
-  LoginFormState copyWith({
-    bool? isPosting,
-    bool? isPosted,
-    bool? isValid,
-    Dui? dui,
-    Password? password,
-  }) =>
-      LoginFormState(
-        isPosting: isPosting ?? this.isPosting,
-        isPosted: isPosted ?? this.isPosted,
-        isValid: isValid ?? this.isValid,
-        dui: dui ?? this.dui,
-        password: password ?? this.password,
-      );
-
-  @override
-  String toString() {
-    return '''
-      LoginFormState:
-        isPosting: $isPosting
-        isPosted: $isPosted
-        isValid: $isValid
-        dui: $dui
-        password: $password
-      ''';
-  }
-}
+// Provider
+final loginFormProvider =
+    StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>((ref) {
+  final loginCallback = ref.watch(authProvider.notifier).login;
+  return LoginFormNotifier(loginCallback: loginCallback);
+});

@@ -6,16 +6,31 @@ import 'package:app_vida_saludable/infrastructure/datasources/datasources.dart';
 import 'package:app_vida_saludable/infrastructure/repositories/repositories.dart';
 import 'package:app_vida_saludable/infrastructure/services/services.dart';
 
-// Provider
-final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
-  final authRepository = AuthRepositoryImpl(AuthDataSourceImpl());
-  final localStorageService = LocalStorageServiceImpl();
+// State
+enum AuthStatus { checking, authenticaded, notAuthenticaded }
 
-  return AuthNotifier(
-    authRepository: authRepository,
-    localStorageService: localStorageService,
-  );
-});
+class AuthState {
+  final AuthStatus authStatus;
+  final LoginResponse? loginResponse;
+  final String errorMessage;
+
+  AuthState({
+    this.authStatus = AuthStatus.checking,
+    this.loginResponse,
+    this.errorMessage = '',
+  });
+
+  AuthState copyWith({
+    AuthStatus? authStatus,
+    LoginResponse? loginResponse,
+    String? errorMessage,
+  }) =>
+      AuthState(
+        authStatus: authStatus ?? this.authStatus,
+        loginResponse: loginResponse ?? this.loginResponse,
+        errorMessage: errorMessage ?? this.errorMessage,
+      );
+}
 
 // Notifier
 class AuthNotifier extends StateNotifier<AuthState> {
@@ -79,28 +94,13 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 }
 
-// State
-enum AuthStatus { checking, authenticaded, notAuthenticaded }
+// Provider
+final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
+  final authRepository = AuthRepositoryImpl(AuthDataSourceImpl());
+  final localStorageService = LocalStorageServiceImpl();
 
-class AuthState {
-  final AuthStatus authStatus;
-  final LoginResponse? loginResponse;
-  final String errorMessage;
-
-  AuthState({
-    this.authStatus = AuthStatus.checking,
-    this.loginResponse,
-    this.errorMessage = '',
-  });
-
-  AuthState copyWith({
-    AuthStatus? authStatus,
-    LoginResponse? loginResponse,
-    String? errorMessage,
-  }) =>
-      AuthState(
-        authStatus: authStatus ?? this.authStatus,
-        loginResponse: loginResponse ?? this.loginResponse,
-        errorMessage: errorMessage ?? this.errorMessage,
-      );
-}
+  return AuthNotifier(
+    authRepository: authRepository,
+    localStorageService: localStorageService,
+  );
+});
