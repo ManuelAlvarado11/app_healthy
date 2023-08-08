@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:app_vida_saludable/config/theme/app_colors.dart';
 import 'package:app_vida_saludable/presentation/widgets/widgets.dart';
 import 'package:app_vida_saludable/presentation/providers/providers.dart';
+import 'package:app_vida_saludable/config/helpers/mask_formats.dart'
+    as mask_formats;
 
 class RegisterScreen extends StatelessWidget {
   static const routeName = '/register-screen';
@@ -80,23 +83,33 @@ class _RegisterForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // PROVIDER
-    final provider = ref.watch(sharedProvider);
-    final departamentos = provider.departamentos;
-    final municipios = provider.municipios;
+    final registerForm = ref.watch(registerFormProvider);
+
+    final shared = ref.watch(sharedProvider);
+    final departamentos = shared.departamentos;
+    final municipios = shared.municipios;
 
     return Column(
       children: [
         // NOMBRES
-        const CustomTextFormField(
+        CustomTextFormField(
           label: 'Nombres*',
-          keyboardType: TextInputType.emailAddress,
+          errorMessage:
+              registerForm.isPosted ? registerForm.nombre.errorMessage : null,
+          onChanged: (value) {
+            ref.read(registerFormProvider.notifier).onNombreChange(value);
+          },
         ),
         const SizedBox(height: 10),
 
         // APELLIDOS
-        const CustomTextFormField(
+        CustomTextFormField(
           label: 'Apellidos*',
-          keyboardType: TextInputType.emailAddress,
+          errorMessage:
+              registerForm.isPosted ? registerForm.apellido.errorMessage : null,
+          onChanged: (value) {
+            ref.read(registerFormProvider.notifier).onApellidoChange(value);
+          },
         ),
         const SizedBox(height: 10),
 
@@ -105,10 +118,18 @@ class _RegisterForm extends ConsumerWidget {
           label: 'Numero DUI*',
           keyboardType: const TextInputType.numberWithOptions(
               decimal: false, signed: false),
+          errorMessage: registerForm.isPosted
+              ? registerForm.documento.errorMessage
+              : null,
           onChanged: (value) {
             String dui = value.replaceAll("-", "");
-            return dui;
+            ref.read(registerFormProvider.notifier).onDocumentoChange(dui);
           },
+          listTextInputFormatter: [
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(9),
+            mask_formats.maskFormatterDUI,
+          ],
         ),
         const SizedBox(height: 10),
 
@@ -165,7 +186,9 @@ class _RegisterForm extends ConsumerWidget {
         CustomTextButton(
           text: 'Registrarme',
           buttonColor: AppColors.primary,
-          onPressed: () => {},
+          onPressed: registerForm.isPosting
+              ? null
+              : ref.read(registerFormProvider.notifier).onFormSubmit,
         ),
         const SizedBox(height: 40),
       ],

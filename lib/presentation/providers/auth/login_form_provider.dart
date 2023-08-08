@@ -1,13 +1,14 @@
-import 'package:app_vida_saludable/presentation/providers/providers.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_vida_saludable/config/utils/inputs/inputs.dart';
+import 'package:app_vida_saludable/presentation/providers/providers.dart';
 
 // State
 class LoginFormState {
   final bool isPosting;
   final bool isPosted;
   final bool isValid;
+
   final Dui dui;
   final Password password;
 
